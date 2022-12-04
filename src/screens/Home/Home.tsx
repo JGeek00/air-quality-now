@@ -1,13 +1,17 @@
-import { Dimensions, ScrollView, Text, View } from "react-native";
-import { lightTheme } from "../../config/theme";
+import { Text, View } from "react-native";
 
-import styles from "./Home.styles";
+import {homeStyles as styles} from "./Home.styles";
+import SearchButton from "./SearchButton";
 
 
 const HomeScreen = () => {
   return (
-    <ScrollView style={styles.screen}>
-    </ScrollView>
+    <View style={styles.screen}>
+      <View style={styles.top}>
+        <Text style={styles.appName}>Air Quality Now</Text>
+        <SearchButton />
+      </View>
+    </View>
   );
 }
  
