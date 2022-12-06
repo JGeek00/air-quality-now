@@ -13,3 +13,14 @@ export const getCitiesByName = async (name: string) => {
     return null;
   }
 }
+
+export const getAllCities = async () => {
+  try {
+    const response = await axios.get(
+      `${apiUrl}/cities?limit=100000&sort=asc&order_by=city`
+    );
+    return <CityQuery>{...response.data};
+  } catch (error) {
+    return null;
+  }
+}

@@ -1,6 +1,7 @@
+import { useContext, useEffect } from 'react';
 import LoadingOverlay from './components/LoadingOverlay/LoadingOverlay';
 import CustomModal from './components/Modal/CustomModal';
-import CitiesContextProvider from './context/CitiesContext';
+import CitiesContextProvider, { CitiesContext } from './context/CitiesContext';
 import LoadingLayerContextProvider from './context/LoadingLayerContext';
 import ModalContextProvider from './context/ModalContext';
 import Router from './router/Router';
@@ -18,6 +19,12 @@ const App = () => {
 }
 
 const Base = () => {
+  const { fetchAllCities } = useContext(CitiesContext);
+
+  useEffect(() => {
+    fetchAllCities();
+  }, []);
+
   return (
     <>
       <Router />

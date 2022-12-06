@@ -1,6 +1,8 @@
 import { createContext, ReactNode, useState } from "react";
 import { City, CityQuery } from '../models/CityQuery';
-import { getCitiesByName } from "../services/apiRequests";
+import { getAllCities, getCitiesByName } from "../services/apiRequests";
+import 'react-native-get-random-values';
+import { v4 as uuid } from 'uuid';
 
 interface CitiesContextProps {
   searchValue: string,
@@ -10,7 +12,8 @@ interface CitiesContextProps {
   fetchCities(): void,
   setSearchValue(value: string): void,
   actualPage: number | null,
-  limit: number | null
+  limit: number | null,
+  fetchAllCities: Function
 }
 
 interface CitiesContextProviderProps {
@@ -25,7 +28,8 @@ export const CitiesContext = createContext<CitiesContextProps>({
   fetchCities: () => {},
   setSearchValue: (value: string) => {},
   actualPage: null,
-  limit: null
+  limit: null,
+  fetchAllCities: () => {}
 });
 
 const CitiesContextProvider: React.FC<CitiesContextProviderProps> = ({ children }) => {
@@ -48,6 +52,21 @@ const CitiesContextProvider: React.FC<CitiesContextProviderProps> = ({ children 
     }
   }
 
+  const fetchAllCities = async () => {
+    const result = await getAllCities();
+    if (result) {
+      setData(result.results.map(item => {
+        return {
+          ...item,
+          id: uuid()
+        }
+      }));
+    }
+    else {
+      setError(true);
+    }
+  }
+
   return (
     <CitiesContext.Provider
       value={{ 
@@ -58,7 +77,8 @@ const CitiesContextProvider: React.FC<CitiesContextProviderProps> = ({ children 
         searchValue, 
         setSearchValue,
         actualPage,
-        limit
+        limit, 
+        fetchAllCities
       }}
     >
       {children}

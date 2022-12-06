@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from '../screens/Home/Home';
 import CustomAppBar from '../components/AppBar/AppBar';
+import SearchScreen from '../screens/Search/Search';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,9 @@ const HomeRouter = () => {
       }}
     >
       <Stack.Screen name='HomeScreen' component={HomeScreen} options={{
+        headerShown: false
+      }} />
+      <Stack.Screen name='SearchScreen' component={SearchScreen} options={{
         headerShown: false
       }} />
     </Stack.Navigator>
