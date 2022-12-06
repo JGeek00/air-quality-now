@@ -1,5 +1,5 @@
 export const lightTheme = {
-  primaryColor: 'rgb(58, 90, 64)',
+  primaryColor: '#219EBC',
   primaryColorLight: 'rgba(58, 90, 64, 0.2)',
   backgroundColor: 'white',
   navigationBar: {

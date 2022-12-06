@@ -1,8 +1,8 @@
 import { StyleSheet, Text } from "react-native";
 
 interface CustomTextProps {
-  children: string,
-  style: Object
+  style?: Object
+  children?: string
 }
 
 const CustomText: React.FC<CustomTextProps> = ({style, children}) => {

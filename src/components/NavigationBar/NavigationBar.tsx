@@ -21,7 +21,7 @@ const CustomNavigationBar: React.FC<BottomTabBarProps> = ({state, navigation}) =
                 <Icon 
                   style={[
                     styles.icon, 
-                    state.index === index ? {backgroundColor: lightTheme.navigationBar.backgroundColor, color: lightTheme.primaryColor} : null
+                    state.index === index ? {color: lightTheme.primaryColor} : null
                   ]} 
                   name={tabs[index].icon} 
                   size={26} 

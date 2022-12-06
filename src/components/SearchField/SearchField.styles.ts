@@ -1,15 +1,14 @@
-import { StyleSheet } from "react-native";
-import { lightTheme } from "../../config/theme";
+import { lightTheme } from './../../config/theme';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  backButton: {
-    marginLeft: 5,
-    marginRight: 5
-  },
   searchBox: {
     marginTop: 16,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 16,
+    borderBottomColor: lightTheme.divider.color,
+    borderBottomWidth: 0.5,
   },
   searchFieldContainer: {
     flexDirection: 'row',
@@ -20,7 +19,6 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 30,
     paddingLeft: 16,
-    marginRight: 10,
   },
   mainItems: {
     flexDirection: 'row',
@@ -30,12 +28,12 @@ export default StyleSheet.create({
   searchField: {
     paddingTop: 5,
     paddingLeft: 12,
-    paddingRight: 16,
     paddingBottom: 5,
-    height: 40
+    height: 40,
+    flex: 1
   },
   searchFieldFocused: {
     borderColor: lightTheme.primaryColor,
     fontFamily: 'OpenSans-Regular'
-  }
+  },
 });

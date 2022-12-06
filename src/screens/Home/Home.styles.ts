@@ -38,3 +38,28 @@ export const searchButtonStyles = StyleSheet.create({
     marginLeft: 10
   }
 });
+
+export const noCityFoundModalStyles = StyleSheet.create({
+  wrapper: {
+    width: '70%',
+    padding: 20,
+    borderRadius: 20,
+    backgroundColor: 'white',
+  },
+  title: {
+    fontFamily: 'OpenSans-Medium',
+    fontSize: 20,
+    color: 'black',
+    marginBottom: 16
+  },
+  description: {
+    fontSize: 14,
+    color: 'black',
+    marginBottom: 16,
+    textAlign: 'justify'
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  }
+})
