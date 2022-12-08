@@ -60,11 +60,7 @@ const CityLocationsScreen: React.FC<CityLocationsScreenProps> = ({ route }) => {
               style={styles.list}
               data={locations}
               renderItem={({ item }) => <LocationItem 
-                x={item.coordinates.latitude}
-                y={item.coordinates.longitude}
-                lastUpdate={item.lastUpdated}
-                name={item.name}
-                parameters={item.parameters}
+                locationItem={item}
               />}
               keyExtractor={(item) => item.id.toString()}
             />

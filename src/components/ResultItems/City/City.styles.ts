@@ -4,8 +4,6 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   wrapper: {
     overflow: 'hidden',
-    borderBottomColor: lightTheme.divider.color,
-    borderBottomWidth: 0.5
   },
   container: {
     padding: 16,

@@ -4,7 +4,8 @@ import { lightTheme } from "../../config/theme";
 export default StyleSheet.create({
   mainContainer: {
     height: '100%',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    backgroundColor: lightTheme.backgroundColor
   },
   backButton: {
     marginLeft: 5,

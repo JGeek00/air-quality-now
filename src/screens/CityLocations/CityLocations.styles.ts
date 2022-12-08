@@ -3,14 +3,13 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   screen: {
-    flex: 1
+    flex: 1,
+    backgroundColor: lightTheme.backgroundColor
   },
   header: {
     marginTop: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomColor: lightTheme.divider.color,
-    borderBottomWidth: 0.5,
     paddingBottom: 8
   },
   backButton: {
@@ -21,7 +20,7 @@ export default StyleSheet.create({
     fontFamily: 'OpenSans-Bold',
     marginLeft: 8,
     paddingBottom: 2,
-    color: 'black'
+    color: 'black',
   },
   body: {
     flex: 1

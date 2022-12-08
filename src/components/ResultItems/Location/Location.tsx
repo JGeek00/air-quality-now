@@ -4,16 +4,12 @@ import { useMemo, useState } from "react";
 import { Platform, Pressable, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
-import { ParameterElement } from "../../../models/LocationQuery";
+import { Location, ParameterElement } from "../../../models/LocationQuery";
 import styles from './Location.styles';
 import ParamItem from "./ParamItem";
 
 interface LocationItemProps {
-  x: number,
-  y: number,
-  lastUpdate: Date,
-  name: string,
-  parameters: ParameterElement[]
+  locationItem: Location
 }
 
 export interface Parameters {
@@ -29,8 +25,10 @@ type RootStackParamList = {
   LocationScreen: {};
 };
 
-const LocationItem: React.FC<LocationItemProps> = ({ x, y, lastUpdate, name, parameters }) => {
+const LocationItem: React.FC<LocationItemProps> = ({ locationItem }) => {
   const [pressed, setPressed] = useState<boolean>(false);
+
+  const { parameters, lastUpdated, name } = locationItem;
 
   const { navigate } = useNavigation<StackNavigationProp<RootStackParamList>>();
  
@@ -46,9 +44,9 @@ const LocationItem: React.FC<LocationItemProps> = ({ x, y, lastUpdate, name, par
   }, [parameters]);
 
   const latestUpdateFormatted: string = useMemo(() => {
-    const date = new Date(lastUpdate);
+    const date = new Date(lastUpdated);
     return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
-  }, [lastUpdate])
+  }, [lastUpdated])
 
   return (
     <View style={styles.wrapper}>
@@ -60,7 +58,9 @@ const LocationItem: React.FC<LocationItemProps> = ({ x, y, lastUpdate, name, par
         android_ripple={{color: '#ccc'}}
         onPressIn={() => setPressed(true)}
         onPressOut={() => setPressed(false)}
-        onPress={() => navigate('LocationScreen', {})}
+        onPress={() => navigate('LocationScreen', {
+          location: locationItem
+        })}
       >
         <Text style={styles.name}>{name}</Text>
         <View style={styles.latestUpdate}>
