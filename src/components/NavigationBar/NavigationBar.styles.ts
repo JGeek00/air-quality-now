@@ -11,6 +11,7 @@ export default StyleSheet.create({
   },
   wrapper: {
     overflow: 'hidden',
+    flex: 1
   },
   tabItem: {
     alignItems: 'center',

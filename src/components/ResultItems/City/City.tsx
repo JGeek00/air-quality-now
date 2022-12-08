@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { useMemo } from "react";
 import { Pressable, Text, View } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,9 +17,13 @@ interface CityResultProps {
   stations: number
 }
 
+type RootStackParamList = {
+  CityLocationsScreen: { city: string };
+};
+
 const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, stations }) => {
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   const date: string = useMemo(() => {
     const formattedDate = new Date(lastUpdated);
@@ -39,7 +44,7 @@ const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, sta
       <Pressable
         style={styles.container}
         android_ripple={{color: '#ccc'}}
-        onPress={() => navigation.navigate('LocationScreen', {
+        onPress={() => navigation.navigate('CityLocationsScreen', {
           city: name
         })}
       >

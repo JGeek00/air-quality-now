@@ -4,6 +4,7 @@ import HomeScreen from '../screens/Home/Home';
 import CustomAppBar from '../components/AppBar/AppBar';
 import SearchScreen from '../screens/Search/Search';
 import LocationScreen from '../screens/Location/Location';
+import CityLocationsScreen from '../screens/CityLocations/CityLocations';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,9 @@ const HomeRouter = () => {
       }} />
       <Stack.Screen name='SearchScreen' component={SearchScreen} options={{
         headerShown: false
+      }} />
+      <Stack.Screen name='CityLocationsScreen' component={CityLocationsScreen} options={{
+        headerShown: false,
       }} />
       <Stack.Screen name='LocationScreen' component={LocationScreen} options={{
         headerShown: false,

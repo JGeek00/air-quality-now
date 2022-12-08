@@ -1,3 +1,5 @@
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { useMemo, useState } from "react";
 import { Platform, Pressable, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -23,9 +25,15 @@ export interface Parameters {
   so2?: string
 }
 
+type RootStackParamList = {
+  LocationScreen: {};
+};
+
 const LocationItem: React.FC<LocationItemProps> = ({ x, y, lastUpdate, name, parameters }) => {
   const [pressed, setPressed] = useState<boolean>(false);
 
+  const { navigate } = useNavigation<StackNavigationProp<RootStackParamList>>();
+ 
   const paramsObj: Parameters = useMemo(() => {
     let obj = {};
     parameters.forEach(param => {
@@ -52,6 +60,7 @@ const LocationItem: React.FC<LocationItemProps> = ({ x, y, lastUpdate, name, par
         android_ripple={{color: '#ccc'}}
         onPressIn={() => setPressed(true)}
         onPressOut={() => setPressed(false)}
+        onPress={() => navigate('LocationScreen', {})}
       >
         <Text style={styles.name}>{name}</Text>
         <View style={styles.latestUpdate}>
