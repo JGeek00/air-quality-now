@@ -17,7 +17,7 @@ const SearchButton = () => {
         onPress={() => navigation.navigate('SearchScreen')}
       >
         <Icon name="search" size={16} style={styles.searchIcon} />
-        <Text style={styles.searchText}>Search some stuff...</Text>
+        <Text style={styles.searchText}>Search a city</Text>
       </Pressable>
     </View>
   );

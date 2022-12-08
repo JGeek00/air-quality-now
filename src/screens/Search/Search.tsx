@@ -50,7 +50,7 @@ const SearchScreen = () => {
                 style={styles.searchField}
                 onFocus={() => setSearchFocused(true)}  
                 onBlur={() => setSearchFocused(false)}  
-                placeholder="Search some stuff..."
+                placeholder="Search a city."
                 keyboardType="web-search"
                 returnKeyType="search"
               />
