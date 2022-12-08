@@ -5,11 +5,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 interface IconButtonProps {
   iconName: string,
   iconSize: number,
+  iconColor?: string,
   onPress(event: GestureResponderEvent): void,
   style?: object
 }
 
-const IconButton: React.FC<IconButtonProps> = ({ iconName, iconSize, onPress, style }) => {
+const IconButton: React.FC<IconButtonProps> = ({ iconName, iconSize, onPress, style, iconColor }) => {
   const [pressing, setPressing] = useState<boolean>(false);
 
   return (
@@ -28,7 +29,7 @@ const IconButton: React.FC<IconButtonProps> = ({ iconName, iconSize, onPress, st
         onPressIn={(e) => setPressing(true)}
         onPressOut={(e) => setPressing(false)}
       >
-        <Icon name={iconName} size={iconSize} />
+        <Icon name={iconName} size={iconSize} color={iconColor} />
       </Pressable>
     </View>
   );

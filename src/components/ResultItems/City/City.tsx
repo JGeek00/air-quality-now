@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { useMemo } from "react";
 import { Pressable, Text, View } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,6 +17,8 @@ interface CityResultProps {
 }
 
 const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, stations }) => {
+
+  const navigation = useNavigation();
 
   const date: string = useMemo(() => {
     const formattedDate = new Date(lastUpdated);
@@ -36,6 +39,9 @@ const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, sta
       <Pressable
         style={styles.container}
         android_ripple={{color: '#ccc'}}
+        onPress={() => navigation.navigate('LocationScreen', {
+          city: name
+        })}
       >
         <View>
           <CustomText style={styles.cityName}>{name}</CustomText>

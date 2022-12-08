@@ -1,1 +1,0 @@
-export default "https://api.openaq.org/v2";

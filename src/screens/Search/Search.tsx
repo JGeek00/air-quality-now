@@ -37,6 +37,7 @@ const SearchScreen = () => {
               iconName="chevron-left" 
               iconSize={16} 
               onPress={(e) => {navigation.goBack()}} 
+              iconColor="black"
             />
           ) : null}
           <View 
