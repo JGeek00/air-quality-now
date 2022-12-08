@@ -1,23 +1,19 @@
-import { RouteProp, useNavigation } from "@react-navigation/native";
+import { StackScreenProps } from "@react-navigation/stack";
 import { useMemo } from "react";
 import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
 import CustomText from "../../components/CustomText/CustomText";
-import IconButton from "../../components/IconButton/IconButton";
-import { Location } from "../../models/LocationQuery";
 
-import styles from './Location.styles';
+import { RootStackParamList } from "../../router/Home.Router";
 
-interface LocationScreenProps {
-  route: RouteProp<{ params: { location: Location } }, 'params'>
-}
+import { locationScreen as styles } from './Location.styles';
 
-const LocationScreen: React.FC<LocationScreenProps> = ({ route }) => {
+type Props = StackScreenProps<RootStackParamList, 'LocationScreen'>;
 
-  const location = route.params.location;
+const LocationScreen = ({ route }: Props) => {
 
-  const { goBack } = useNavigation();
+  const location = route.params?.location;
 
   const latestUpdate: string = useMemo(() => {
     const date = new Date(location.lastUpdated);
@@ -26,16 +22,6 @@ const LocationScreen: React.FC<LocationScreenProps> = ({ route }) => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.header}>
-        <IconButton 
-          iconName="chevron-left" 
-          iconColor="black" 
-          iconSize={16} 
-          style={styles.backButton}
-          onPress={() => goBack()}
-        />
-        <CustomText style={styles.headerTitle}>{location.name}</CustomText>
-      </View>
       <ScrollView style={styles.body}>
         <CustomText style={styles.sectionTitle}>Information</CustomText>
         <View style={styles.infoRow}>

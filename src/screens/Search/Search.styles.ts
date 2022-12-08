@@ -1,21 +1,38 @@
 import { StyleSheet } from "react-native";
 import { lightTheme } from "../../config/theme";
 
-export default StyleSheet.create({
+export const searchStyles = StyleSheet.create({
   mainContainer: {
     height: '100%',
     flexDirection: 'column',
     backgroundColor: lightTheme.backgroundColor
   },
+  list: {
+    flex: 1
+  },
+  inputSearch: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  inputSearchText: {
+    fontFamily: 'OpenSans-Medium',
+    fontSize: 26,
+    marginTop: 40
+  }
+});
+
+export const headerStyles = StyleSheet.create({
   backButton: {
     marginLeft: 5,
     marginRight: 5
   },
   searchBox: {
-    marginTop: 16,
+    paddingTop: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16
+    paddingBottom: 16,
+    backgroundColor: lightTheme.backgroundColor
   },
   searchFieldContainer: {
     flexDirection: 'row',
@@ -44,17 +61,4 @@ export default StyleSheet.create({
     borderColor: lightTheme.primaryColor,
     fontFamily: 'OpenSans-Regular'
   },
-  list: {
-    flex: 1
-  },
-  inputSearch: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  inputSearchText: {
-    fontFamily: 'OpenSans-Medium',
-    fontSize: 26,
-    marginTop: 40
-  }
-});
+})

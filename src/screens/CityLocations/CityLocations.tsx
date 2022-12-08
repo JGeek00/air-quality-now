@@ -2,18 +2,17 @@ import { RouteProp, useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import IconButton from "../../components/IconButton/IconButton";
 import LocationItem from "../../components/ResultItems/Location/Location";
 import { Location } from "../../models/LocationQuery";
 import { getCityLocations } from "../../services/apiRequests";
+import type { StackScreenProps } from '@react-navigation/stack';
 
-import styles from './CityLocations.styles';
+import { screenStyles as styles } from './CityLocations.styles';
+import { RootStackParamList } from "../../router/Home.Router";
 
-interface CityLocationsScreenProps {
-  route: RouteProp<{ params: { city: string } }, 'params'>
-}
+type Props = StackScreenProps<RootStackParamList, 'CityLocationsScreen'>;
 
-const CityLocationsScreen: React.FC<CityLocationsScreenProps> = ({ route }) => {
+const CityLocationsScreen = ({ route }: Props) => {
   const [locations, setLocations] = useState<Array<Location>>([]);
   const [page, setPage] = useState<number>(1);
 
@@ -23,7 +22,7 @@ const CityLocationsScreen: React.FC<CityLocationsScreenProps> = ({ route }) => {
   const { goBack } = useNavigation();
 
   const fetchLocations = async () => {
-    const result = await getCityLocations(route.params.city, page);
+    const result = await getCityLocations(route.params?.city, page);
     setLoading(false);
     if (result) {
       setLocations(result.results);
@@ -39,16 +38,6 @@ const CityLocationsScreen: React.FC<CityLocationsScreenProps> = ({ route }) => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.header}>
-        <IconButton 
-          iconName="chevron-left" 
-          iconColor="black" 
-          iconSize={16} 
-          style={styles.backButton}
-          onPress={() => goBack()}
-        />
-        <Text style={styles.headerTitle}>{route.params.city}</Text>
-      </View>
       <View style={styles.body}>
         {
           loading ? (

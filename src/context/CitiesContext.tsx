@@ -9,7 +9,9 @@ interface CitiesContextProps {
   data: City[],
   error: boolean,
   fetchAllCities: Function,
-  retry: Function
+  retry: Function,
+  searchValue: string,
+  setSearchValue(value: string): void
 }
 
 interface CitiesContextProviderProps {
@@ -21,13 +23,17 @@ export const CitiesContext = createContext<CitiesContextProps>({
   data: [],
   error: false,
   fetchAllCities: () => {},
-  retry: () => {}
+  retry: () => {},
+  searchValue: '',
+  setSearchValue: () => {}
 });
 
 const CitiesContextProvider: React.FC<CitiesContextProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<City[]>([]);
   const [error, setError] = useState<boolean>(false);
+
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const fetchAllCities = async () => {
     const result = await getAllCities();
@@ -58,7 +64,9 @@ const CitiesContextProvider: React.FC<CitiesContextProviderProps> = ({ children 
         data, 
         error,
         fetchAllCities,
-        retry
+        retry,
+        searchValue,
+        setSearchValue
       }}
     >
       {children}
