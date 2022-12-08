@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 import { City, CityQuery } from '../models/CityQuery';
-import { getAllCities, getCitiesByName } from "../services/apiRequests";
+import { getAllCities } from "../services/apiRequests";
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 
@@ -8,7 +8,8 @@ interface CitiesContextProps {
   loading: boolean,
   data: City[],
   error: boolean,
-  fetchAllCities: Function
+  fetchAllCities: Function,
+  retry: Function
 }
 
 interface CitiesContextProviderProps {
@@ -19,7 +20,8 @@ export const CitiesContext = createContext<CitiesContextProps>({
   loading: false,
   data: [],
   error: false,
-  fetchAllCities: () => {}
+  fetchAllCities: () => {},
+  retry: () => {}
 });
 
 const CitiesContextProvider: React.FC<CitiesContextProviderProps> = ({ children }) => {
@@ -43,13 +45,20 @@ const CitiesContextProvider: React.FC<CitiesContextProviderProps> = ({ children 
     }
   }
 
+  const retry = async () => {
+    setLoading(true);
+    setError(false);
+    await fetchAllCities();
+  }
+
   return (
     <CitiesContext.Provider
       value={{ 
         loading, 
         data, 
         error,
-        fetchAllCities
+        fetchAllCities,
+        retry
       }}
     >
       {children}
