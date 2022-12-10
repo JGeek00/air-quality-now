@@ -1,17 +1,21 @@
 import { StackScreenProps } from "@react-navigation/stack";
-import { useMemo } from "react";
-import { View } from "react-native";
+import { useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
 import CustomText from "../../components/CustomText/CustomText";
 
 import { RootStackParamList } from "../../router/Home.Router";
+import { getAddressFromCoordinates } from "../../services/apiRequests";
 
 import { locationScreen as styles } from './Location.styles';
 
 type Props = StackScreenProps<RootStackParamList, 'LocationScreen'>;
 
 const LocationScreen = ({ route }: Props) => {
+  const [address, setAddress] = useState<string>('');
+  const [loadingAddress, setLoadingAddress] = useState<boolean>(true);
+  const [errorAddress, setErrorAddress] = useState<boolean>(false);
 
   const location = route.params?.location;
 
@@ -19,6 +23,21 @@ const LocationScreen = ({ route }: Props) => {
     const date = new Date(location.lastUpdated);
     return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
   }, [location.lastUpdated]);
+
+  const fetchAddress = async () => {
+    const result = await getAddressFromCoordinates(location.coordinates.latitude, location.coordinates.longitude);
+    setLoadingAddress(false);
+    if (result) {
+      setAddress(result.address.road);
+    }
+    else {
+      setErrorAddress(true);
+    }
+  }
+
+  useEffect(() => {
+    fetchAddress();
+  }, [location.coordinates]);
 
   return (
     <View style={styles.screen}>
@@ -34,7 +53,21 @@ const LocationScreen = ({ route }: Props) => {
         </View>
         <View style={styles.infoRow}>
           <CustomText style={styles.infoLabel}>Address</CustomText>
-          <CustomText>{location.name}</CustomText>
+          {
+            loadingAddress ? (
+              <ActivityIndicator />
+            ) : (
+              errorAddress ? (
+                <Icon name="exclamation-circle" color="red" size={18} />
+              ) : (
+                <CustomText>{address}</CustomText>
+              )
+            )
+          }
+        </View>
+        <View style={styles.infoRow}>
+          <CustomText style={styles.infoLabel}>City and country</CustomText>
+          <CustomText>{`${location.city}, ${location.country}`}</CustomText>
         </View>
         <View style={styles.infoRow}>
           <CustomText style={styles.infoLabel}>Entity</CustomText>
