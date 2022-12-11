@@ -21,7 +21,7 @@ const SearchScreen = () => {
   const findCities = (value: string) => {
     setSearchValue(value);
     setCitiesDisplay(
-      cities.filter(city => city.city.toLocaleLowerCase().includes(value))
+      cities.filter(city => city.city.toLocaleLowerCase().includes(value.toLowerCase()))
     );
   }
 

@@ -53,7 +53,7 @@ const SearchHeader = () => {
         </View>
         {searchValue ? (
           <IconButton 
-            style={{marginRight: 5}} 
+            style={styles.removeIcon} 
             iconName="remove" 
             iconSize={16} 
             onPress={(_) => {setSearchValue('')}} 

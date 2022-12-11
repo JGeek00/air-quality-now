@@ -1,6 +1,7 @@
-import { subtextDarkTheme, subtextLightTheme } from './../../../config/theme';
 import { Theme } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
+
+import { subtextDarkTheme, subtextLightTheme } from './../../../config/theme';
 
 export const useStyles = (theme: Theme) => StyleSheet.create({
   wrapper: {
@@ -16,7 +17,8 @@ export const useStyles = (theme: Theme) => StyleSheet.create({
   },
   parameters: {
     flexDirection: 'row',
-    marginTop: 8
+    marginTop: 8,
+    zIndex: 5
   },
   latestUpdate: {
     flexDirection: 'row',

@@ -18,9 +18,14 @@ export const useStyles = (theme: Theme) => StyleSheet.create({
     fontWeight: 'bold'
   },
   infoContainer: {
+    flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
     marginTop: 8,
+    zIndex: 5
+  },
+  flagContainer: {
+    justifyContent: 'center',
+    flex: 1
   },
   verticalDivider: {
     marginRight: 10,

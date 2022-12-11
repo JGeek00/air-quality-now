@@ -45,6 +45,7 @@ export const useHeaderStyles = (theme: Theme) => StyleSheet.create({
     borderRadius: 30,
     paddingLeft: 16,
     marginRight: 10,
+    position: 'relative',
   },
   mainItems: {
     flexDirection: 'row',
@@ -54,13 +55,18 @@ export const useHeaderStyles = (theme: Theme) => StyleSheet.create({
   searchField: {
     paddingTop: 5,
     paddingLeft: 12,
-    paddingRight: 16,
+    paddingRight: 45,
     paddingBottom: 5,
     height: 40,
-    color: theme.dark ? subtextDarkTheme : subtextLightTheme
+    flex: 1,
+    color: theme.dark ? subtextDarkTheme : subtextLightTheme,
   },
   searchFieldFocused: {
     borderColor: theme.colors.primary,
     fontFamily: 'OpenSans-Regular'
   },
+  removeIcon: {
+    position: 'absolute',
+    right: 5
+  }
 })
