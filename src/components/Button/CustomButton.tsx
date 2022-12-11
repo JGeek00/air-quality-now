@@ -1,5 +1,8 @@
+import { Theme, useTheme } from "@react-navigation/native";
 import { useState } from "react";
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, View } from "react-native";
+
+import { darkRipple, lightRipple } from "../../config/theme";
 import CustomText from "../CustomText/CustomText";
 
 interface CustomButtonProps {
@@ -11,13 +14,16 @@ interface CustomButtonProps {
 const CustomButton: React.FC<CustomButtonProps> = ({ text, onPress, textColor }) => {
   const [pressed, setPressed] = useState<boolean>(false);
 
+  const theme = useTheme();
+  const styles = useStyles(theme);
+
   return (
     <View style={styles.wrapper}>
       <Pressable 
         onPress={() => onPress()} 
         onPressIn={() => setPressed(true)}
         onPressOut={() => setPressed(false)}
-        android_ripple={{color: '#ccc'}}
+        android_ripple={{color: theme.dark ? darkRipple : lightRipple}}
         style={[
           styles.pressable,
           pressed && Platform.OS !== 'android' ? styles.pressed : null
@@ -29,7 +35,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ text, onPress, textColor })
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Theme) => StyleSheet.create({
   wrapper: {
     overflow: 'hidden',
     borderRadius: 20,
@@ -39,7 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   pressed: {
-    backgroundColor: '#ccc'
+    backgroundColor: theme.dark ? darkRipple : lightRipple
   },
   text: {
     fontFamily: 'OpenSans-Medium',

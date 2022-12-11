@@ -1,14 +1,14 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useMemo } from "react";
 import { Pressable, Text, View } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import countriesFlags from "../../../constants/countriesFlags";
 
+import { darkRipple, lightRipple, subtextDarkTheme, subtextLightTheme } from "../../../config/theme";
+import countriesFlags from "../../../constants/countriesFlags";
 import CustomText from "../../CustomText/CustomText";
 import Divider, { Direction } from "../../Divider/Divider";
-
-import styles from './City.styles';
+import { useStyles } from './City.styles';
 
 interface CityResultProps {
   name: string,
@@ -22,6 +22,8 @@ type RootStackParamList = {
 };
 
 const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, stations }) => {
+  const theme = useTheme();
+  const styles = useStyles(theme);
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -43,7 +45,7 @@ const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, sta
     <View style={styles.wrapper}>
       <Pressable
         style={styles.container}
-        android_ripple={{color: '#ccc'}}
+        android_ripple={{color: theme.dark ? darkRipple : lightRipple}}
         onPress={() => navigation.navigate('CityLocationsScreen', {
           city: name
         })}
@@ -59,7 +61,10 @@ const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, sta
           </View>
         </View>
         <View style={styles.arrowContainer}>
-          <Icon name="chevron-right" />
+          <Icon 
+            name="chevron-right"
+            color={theme.dark ? subtextDarkTheme : subtextLightTheme}
+          />
         </View>
       </Pressable>
     </View>

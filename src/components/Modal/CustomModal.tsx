@@ -1,8 +1,12 @@
+import { Theme, useTheme } from "@react-navigation/native";
 import { useContext, useEffect, useRef } from "react";
-import { Modal, StyleSheet, Text, View, Animated } from "react-native";
+import { StyleSheet, Animated } from "react-native";
 import { ModalContext } from "../../context/ModalContext";
 
 const CustomModal = () => {
+  const theme = useTheme();
+  const styles = useStyles(theme);
+
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const { content, visible } = useContext(ModalContext);
@@ -48,7 +52,7 @@ const CustomModal = () => {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Theme) => StyleSheet.create({
   baseLayer: {
     position: 'absolute',
     top: 0,
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
     width: '70%',
     padding: 16,
     borderRadius: 20,
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.background,
     height: 100
   }
 });

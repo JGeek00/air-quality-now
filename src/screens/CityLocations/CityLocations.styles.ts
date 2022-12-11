@@ -1,10 +1,10 @@
-import { lightTheme } from '../../config/theme';
 import { StyleSheet } from 'react-native';
+import { Theme } from '@react-navigation/native';
 
-export const screenStyles = StyleSheet.create({
+export const useScreenStyles = (theme: Theme) => StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: lightTheme.backgroundColor
+    backgroundColor: theme.colors.background
   },
   body: {
     flex: 1
@@ -25,7 +25,7 @@ export const screenStyles = StyleSheet.create({
   message: {
     fontSize: 22,
     fontFamily: 'OpenSans-Medium',
-    color: 'black',
+    color: theme.colors.text,
     textAlign: 'center',
     padding: 30
   },
@@ -37,22 +37,23 @@ export const screenStyles = StyleSheet.create({
   }
 });
 
-export const headerStyles = StyleSheet.create({
+export const useHeaderStyles = (theme: Theme) => StyleSheet.create({
   header: {
     paddingTop: 16,
     flexDirection: 'row',
     alignItems: 'center',
     paddingBottom: 8,
-    backgroundColor: lightTheme.backgroundColor
+    backgroundColor: theme.colors.background
   },
   backButton: {
-    marginLeft: 5
+    marginLeft: 5,
+    color: theme.colors.text,
   },
   headerTitle: {
     fontSize: 18,
     fontFamily: 'OpenSans-Bold',
     marginLeft: 8,
     paddingBottom: 2,
-    color: 'black',
+    color: theme.colors.text
   },
 })

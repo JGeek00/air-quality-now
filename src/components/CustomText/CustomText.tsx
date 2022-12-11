@@ -1,3 +1,4 @@
+import { Theme, useTheme } from "@react-navigation/native";
 import { StyleSheet, Text } from "react-native";
 
 interface CustomTextProps {
@@ -6,6 +7,9 @@ interface CustomTextProps {
 }
 
 const CustomText: React.FC<CustomTextProps> = ({style, children}) => {
+  const theme = useTheme();
+  const styles = useStyles(theme);
+
   return (
     <Text style={[styles.text, style]}>
       {children}
@@ -13,9 +17,10 @@ const CustomText: React.FC<CustomTextProps> = ({style, children}) => {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Theme) => StyleSheet.create({
   text: {
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: 'OpenSans-Regular',
+    color: theme.dark ? 'rgb(148, 148, 148)' : 'rgb(117 117 117)'
   }
 });
  

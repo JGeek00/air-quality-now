@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingBottom: 16,
-    borderBottomColor: lightTheme.divider.color,
+    borderBottomColor: lightTheme.colors.border,
     borderBottomWidth: 0.5,
   },
   searchFieldContainer: {
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     flex: 1
   },
   searchFieldFocused: {
-    borderColor: lightTheme.primaryColor,
+    borderColor: lightTheme.colors.primary,
     fontFamily: 'OpenSans-Regular'
   },
 });

@@ -1,14 +1,15 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useContext, useEffect, useState } from "react";
+import { useTheme } from "@react-navigation/native";
+import React from "react";
 import { Text, View } from "react-native";
 
-import { ModalContext } from "../../context/ModalContext";
-import { LoadingLayerContext } from "../../context/LoadingLayerContext";
-import {homeStyles as styles} from "./Home.styles";
+import { useHomeStyles} from "./Home.styles";
 import SearchButton from "./SearchButton";
 
 
 const HomeScreen = () => {
+  const theme = useTheme();
+  const styles = useHomeStyles(theme);
+
   return (
     <View style={styles.screen}>
       <View style={styles.top}>

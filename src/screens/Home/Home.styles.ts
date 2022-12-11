@@ -1,24 +1,26 @@
-import { lightTheme } from '../../config/theme';
+import { Theme } from '@react-navigation/native';
 import { StyleSheet } from "react-native";
 
-export const homeStyles =  StyleSheet.create({
+import { darkRipple, lightRipple, subtextDarkTheme, subtextLightTheme } from './../../config/theme';
+
+export const useHomeStyles = (theme: Theme) => StyleSheet.create({
   screen: {
-    backgroundColor: lightTheme.backgroundColor,
+    backgroundColor: theme.colors.background,
     flex: 1
   },
   top: {
-    backgroundColor: lightTheme.primaryColorLight,
+    backgroundColor: theme.colors.background,
     padding: 16,
   },
   appName: {
     fontFamily: 'OpenSans-SemiBold',
     fontSize: 22,
     textAlign: 'center',
-    color: 'black'
+    color: theme.colors.text
   },
 });
 
-export const searchButtonStyles = StyleSheet.create({
+export const useSearchButtonStyles = (theme: Theme) => StyleSheet.create({
   searchWrapper: {
     overflow: 'hidden',
     borderRadius: 20,
@@ -26,7 +28,7 @@ export const searchButtonStyles = StyleSheet.create({
   },
   searchPressable: {
     borderRadius: 20,
-    borderColor: '#ccc',
+    borderColor: theme.dark ? darkRipple : lightRipple,
     borderWidth: 1,
     padding: 10,
     flexDirection: 'row',
@@ -35,31 +37,7 @@ export const searchButtonStyles = StyleSheet.create({
     marginLeft: 5
   },
   searchText: {
-    marginLeft: 10
+    marginLeft: 10,
+    color: theme.dark ? subtextDarkTheme : subtextLightTheme
   }
 });
-
-export const noCityFoundModalStyles = StyleSheet.create({
-  wrapper: {
-    width: '70%',
-    padding: 20,
-    borderRadius: 20,
-    backgroundColor: 'white',
-  },
-  title: {
-    fontFamily: 'OpenSans-Medium',
-    fontSize: 20,
-    color: 'black',
-    marginBottom: 16
-  },
-  description: {
-    fontSize: 14,
-    color: 'black',
-    marginBottom: 16,
-    textAlign: 'justify'
-  },
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end'
-  }
-})

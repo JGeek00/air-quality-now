@@ -1,7 +1,7 @@
-import { lightTheme } from './../../../config/theme';
+import { Theme } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+export const useStyles = (theme: Theme) => StyleSheet.create({
   wrapper: {
     overflow: 'hidden',
   },
@@ -13,7 +13,7 @@ export default StyleSheet.create({
   },
   cityName: {
     fontSize: 18,
-    color: 'black',
+    color: theme.colors.text,
     fontFamily: 'OpenSans-Bold',
     fontWeight: 'bold'
   },
@@ -24,7 +24,7 @@ export default StyleSheet.create({
   },
   verticalDivider: {
     marginRight: 10,
-    marginLeft: 10
+    marginLeft: 10,
   },
   pillText: {
     borderRadius: 20,

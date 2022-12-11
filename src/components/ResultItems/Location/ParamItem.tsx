@@ -2,8 +2,9 @@ import { Text } from "react-native";
 import { contrastColor } from 'contrast-color';
 
 import colorsParameters from "../../../constants/colorsParameters";
-import styles from './Location.styles';
 import { Parameters } from "./Location";
+import { useTheme } from "@react-navigation/native";
+import { useParameterStyles } from "./Location.styles";
 
 interface ParamItemProps {
   paramId: string,
@@ -12,6 +13,9 @@ interface ParamItemProps {
 }
 
 const ParamItem: React.FC<ParamItemProps> = ({ paramId, paramLabel, params }) => {
+  const theme = useTheme();
+  const styles = useParameterStyles(theme);
+
   return (
     <Text 
       style={[

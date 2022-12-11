@@ -10,10 +10,14 @@ const SettingsRouter = () => {
     <Stack.Navigator
       initialRouteName='SettingsScreen'
       screenOptions={{
-        header: (props) => <CustomAppBar {...props} />
+        header: (props) => <CustomAppBar {...props} />,
       }}
     >
-      <Stack.Screen name='SetingsScreen' component={SettingsScreen} />
+      <Stack.Screen 
+        name='SetingsScreen' 
+        component={SettingsScreen}  
+        options={{title: 'Settings'}}
+      />
     </Stack.Navigator>
   )
 }

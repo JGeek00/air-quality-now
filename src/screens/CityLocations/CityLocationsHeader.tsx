@@ -1,12 +1,13 @@
 import { Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { StackHeaderProps } from "@react-navigation/stack";
+import { useNavigation, useTheme } from "@react-navigation/native";
 
 import IconButton from "../../components/IconButton/IconButton";
-import { headerStyles as styles } from './CityLocations.styles';
-import { StackHeaderProps, StackScreenProps } from "@react-navigation/stack";
-import { RootStackParamList } from "../../router/Home.Router";
+import { useHeaderStyles } from './CityLocations.styles';
 
 const CityLocationsHeader = ({ route }: StackHeaderProps) => {
+  const theme = useTheme();
+  const styles = useHeaderStyles(theme);
 
   const { goBack } = useNavigation();
 
@@ -14,7 +15,7 @@ const CityLocationsHeader = ({ route }: StackHeaderProps) => {
     <View style={styles.header}>
       <IconButton 
         iconName="chevron-left" 
-        iconColor="black" 
+        iconColor={theme.colors.text}
         iconSize={16} 
         style={styles.backButton}
         onPress={() => goBack()}

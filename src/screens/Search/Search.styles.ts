@@ -1,11 +1,12 @@
+import { Theme } from '@react-navigation/native';
 import { StyleSheet } from "react-native";
-import { lightTheme } from "../../config/theme";
+import { subtextDarkTheme, subtextLightTheme } from '../../config/theme';
 
-export const searchStyles = StyleSheet.create({
+export const useSearchStyles = (theme: Theme) => StyleSheet.create({
   mainContainer: {
     height: '100%',
     flexDirection: 'column',
-    backgroundColor: lightTheme.backgroundColor
+    backgroundColor: theme.colors.background
   },
   list: {
     flex: 1
@@ -22,7 +23,7 @@ export const searchStyles = StyleSheet.create({
   }
 });
 
-export const headerStyles = StyleSheet.create({
+export const useHeaderStyles = (theme: Theme) => StyleSheet.create({
   backButton: {
     marginLeft: 5,
     marginRight: 5
@@ -32,7 +33,7 @@ export const headerStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingBottom: 16,
-    backgroundColor: lightTheme.backgroundColor
+    backgroundColor: theme.colors.background
   },
   searchFieldContainer: {
     flexDirection: 'row',
@@ -55,10 +56,11 @@ export const headerStyles = StyleSheet.create({
     paddingLeft: 12,
     paddingRight: 16,
     paddingBottom: 5,
-    height: 40
+    height: 40,
+    color: theme.dark ? subtextDarkTheme : subtextLightTheme
   },
   searchFieldFocused: {
-    borderColor: lightTheme.primaryColor,
+    borderColor: theme.colors.primary,
     fontFamily: 'OpenSans-Regular'
   },
 })

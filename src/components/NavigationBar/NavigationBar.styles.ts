@@ -1,12 +1,14 @@
-import { lightTheme } from '../../config/theme';
+import { Theme } from '@react-navigation/native';
 import { StyleSheet } from "react-native";
 
-export default StyleSheet.create({
+import { subtextDarkTheme, subtextLightTheme } from './../../config/theme';
+
+export const useStyles = (theme: Theme) => StyleSheet.create({
   container: {
-    backgroundColor: lightTheme.backgroundColor,
+    backgroundColor: theme.colors.background,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    borderTopColor: lightTheme.divider.color,
+    borderTopColor: theme.colors.border,
     borderTopWidth: 0.5
   },
   wrapper: {
@@ -24,11 +26,9 @@ export default StyleSheet.create({
     padding: 5,
     borderRadius: 50,
     marginBottom: 5,
-    color: lightTheme.navigationBar.inactive
   },
   tabText: {
     fontFamily: 'OpenSans-Medium',
     fontWeight: '500',
-    color: lightTheme.navigationBar.inactive,
   }
 });

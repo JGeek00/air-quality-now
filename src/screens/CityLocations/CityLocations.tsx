@@ -7,10 +7,11 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import LocationItem from "../../components/ResultItems/Location/Location";
 import { getCityLocations } from "../../services/apiRequests";
 import { Location } from "../../models/LocationQuery";
-import { screenStyles as styles } from './CityLocations.styles';
+import { useScreenStyles } from './CityLocations.styles';
 import { RootStackParamList } from "../../router/Home.Router";
 import CustomButton from "../../components/Button/CustomButton";
 import { lightTheme } from "../../config/theme";
+import { useTheme } from "@react-navigation/native";
 
 type Props = StackScreenProps<RootStackParamList, 'CityLocationsScreen'>;
 
@@ -25,6 +26,9 @@ const CityLocationsScreen = ({ route }: Props) => {
   const [needsPagination, setNeedsPagination] = useState<boolean>(false);
 
   const [fetchingMore, setFetchingMore] = useState<boolean>(false);
+
+  const theme = useTheme();
+  const styles = useScreenStyles(theme);
 
   const fetchLocations = async (page: number | undefined = 1) => {
     if (page > 1) {
@@ -63,7 +67,7 @@ const CityLocationsScreen = ({ route }: Props) => {
               <View style={styles.error}>
                 <Icon name="exclamation-circle" size={60} />
                 <Text style={styles.message}>Couldn't load data</Text>
-                <CustomButton text="Retry" onPress={fetchLocations} textColor={lightTheme.primaryColor} />
+                <CustomButton text="Retry" onPress={fetchLocations} textColor={theme.colors.primary} />
               </View>
             ) : (
               <FlatList

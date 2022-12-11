@@ -1,14 +1,15 @@
+import { useTheme } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
 import CustomText from "../../components/CustomText/CustomText";
+import { subtextDarkTheme, subtextLightTheme } from "../../config/theme";
 
 import { RootStackParamList } from "../../router/Home.Router";
 import { getAddressFromCoordinates } from "../../services/apiRequests";
-
-import { locationScreen as styles } from './Location.styles';
+import { useLocationScreen } from "./Location.styles";
 
 type Props = StackScreenProps<RootStackParamList, 'LocationScreen'>;
 
@@ -16,6 +17,9 @@ const LocationScreen = ({ route }: Props) => {
   const [address, setAddress] = useState<string>('');
   const [loadingAddress, setLoadingAddress] = useState<boolean>(true);
   const [errorAddress, setErrorAddress] = useState<boolean>(false);
+
+  const theme = useTheme();
+  const styles = useLocationScreen(theme);
 
   const location = route.params?.location;
 
@@ -78,14 +82,22 @@ const LocationScreen = ({ route }: Props) => {
             <CustomText style={styles.infoLabel}>Is mobile</CustomText>
             <CustomText style={styles.infoSublabel}>The location is not fixed.</CustomText>
           </View>
-          <Icon name={location.isMobile ? "check" : "close"} size={18} />
+          <Icon 
+            name={location.isMobile ? "check" : "close"} 
+            size={18} 
+            color={theme.dark ? subtextDarkTheme : subtextLightTheme}
+          />
         </View>
         <View style={styles.infoRow}>
           <View style={styles.infoLabelBox}>
             <CustomText style={styles.infoLabel}>Is analysis</CustomText>
             <CustomText style={styles.infoSublabel}>Data is the product of a previous analysis/aggregation and not raw measurements. </CustomText>
           </View>
-          <Icon name={location.isAnalysis ? "check" : "close"} size={18} />
+          <Icon 
+            name={location.isAnalysis ? "check" : "close"} 
+            size={18} 
+            color={theme.dark ? subtextDarkTheme : subtextLightTheme}
+          />
         </View>
         <View style={styles.infoRow}>
           <CustomText style={styles.infoLabel}>Latest data</CustomText>

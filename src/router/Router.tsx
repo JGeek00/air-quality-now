@@ -1,18 +1,49 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer, Theme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import CustomNavigationBar from '../components/NavigationBar/NavigationBar';
 import { tabs } from '../config/screens';
+import { darkTheme, lightTheme } from '../config/theme';
+import { useColorScheme } from 'react-native';
+import { useContext, useMemo } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const BottomTabs = createBottomTabNavigator();
 
 const Router = () => {
+  const scheme = useColorScheme();
+
+  const { selectedTheme } = useContext(ThemeContext);
+
+  const theme: Theme = useMemo(() => {
+    if (selectedTheme === 0) {
+      if (scheme === 'light') {
+        return lightTheme;
+      }
+      else if (scheme === 'dark')  {
+        return darkTheme;
+      }
+      else {
+        return DefaultTheme;
+      }
+    }
+    else if (selectedTheme === 1) {
+      return lightTheme;
+    }
+    else if (selectedTheme === 2) {
+      return darkTheme;
+    }
+    else {
+      return DefaultTheme;
+    }
+  }, [selectedTheme, scheme])
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       <BottomTabs.Navigator
         initialRouteName='Home'
         screenOptions={{
-          headerShown: false
+          headerShown: false,
         }}
         tabBar={(props) => <CustomNavigationBar {...props} />}
       >

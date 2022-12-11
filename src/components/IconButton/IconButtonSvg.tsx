@@ -6,14 +6,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { darkRipple, lightRipple } from "../../config/theme";
 
 interface IconButtonProps {
-  iconName: string,
-  iconSize: number,
-  iconColor?: string,
+  component: JSX.Element
   onPress(event: GestureResponderEvent): void,
   style?: object
 }
 
-const IconButton: React.FC<IconButtonProps> = ({ iconName, iconSize, onPress, style, iconColor }) => {
+const IconButtonSvg: React.FC<IconButtonProps> = ({ component, onPress, style }) => {
   const [pressing, setPressing] = useState<boolean>(false);
 
   const theme = useTheme();
@@ -28,13 +26,12 @@ const IconButton: React.FC<IconButtonProps> = ({ iconName, iconSize, onPress, st
         onPress={onPress} 
         android_ripple={{color: theme.dark ? darkRipple : lightRipple}}
         style={[
-          styles.pressable, 
-          {width: iconSize+20, height: iconSize+20},
+          styles.pressable,
         ]}
         onPressIn={(e) => setPressing(true)}
         onPressOut={(e) => setPressing(false)}
       >
-        <Icon name={iconName} size={iconSize} color={iconColor} />
+        {component}
       </Pressable>
     </View>
   );
@@ -53,4 +50,4 @@ const styles = StyleSheet.create({
   }
 })
  
-export default IconButton;
+export default IconButtonSvg;

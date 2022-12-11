@@ -1,11 +1,12 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useMemo, useState } from "react";
 import { Platform, Pressable, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
+import { darkRipple, lightRipple } from "../../../config/theme";
 import { Location, ParameterElement } from "../../../models/LocationQuery";
-import styles from './Location.styles';
+import { useStyles } from './Location.styles';
 import ParamItem from "./ParamItem";
 
 interface LocationItemProps {
@@ -27,6 +28,9 @@ type RootStackParamList = {
 
 const LocationItem: React.FC<LocationItemProps> = ({ locationItem }) => {
   const [pressed, setPressed] = useState<boolean>(false);
+
+  const theme = useTheme();
+  const styles = useStyles(theme);
 
   const { parameters, lastUpdated, name } = locationItem;
 
@@ -53,9 +57,9 @@ const LocationItem: React.FC<LocationItemProps> = ({ locationItem }) => {
       <Pressable 
         style={[
           styles.container,
-          pressed && Platform.OS !== 'android' ? {backgroundColor: '#ccc'} : null
+          pressed && Platform.OS !== 'android' ? {backgroundColor: theme.dark ? darkRipple : lightRipple} : null
         ]} 
-        android_ripple={{color: '#ccc'}}
+        android_ripple={{color: theme.dark ? darkRipple : lightRipple}}
         onPressIn={() => setPressed(true)}
         onPressOut={() => setPressed(false)}
         onPress={() => navigate('LocationScreen', {
@@ -65,7 +69,7 @@ const LocationItem: React.FC<LocationItemProps> = ({ locationItem }) => {
         <Text style={styles.name}>{name}</Text>
         <View style={styles.latestUpdate}>
           <Text style={styles.latestUpdateLabel}>Latest update:</Text>
-          <Text>{latestUpdateFormatted}</Text>
+          <Text style={styles.latestUpdateValue}>{latestUpdateFormatted}</Text>
         </View>
         <ScrollView style={styles.parameters} horizontal={true} showsHorizontalScrollIndicator={false}>
           {paramsObj.co ? <ParamItem paramId="co" paramLabel={paramsObj.co} params={paramsObj} /> : null}

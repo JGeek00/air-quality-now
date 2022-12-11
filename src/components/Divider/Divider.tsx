@@ -1,5 +1,5 @@
+import { Theme, useTheme } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
-import { lightTheme } from "../../config/theme";
 
 export enum Direction {
   "horizontal", 
@@ -12,6 +12,9 @@ interface DividerProps {
 }
 
 const Divider: React.FC<DividerProps> = ({type, style}) => {
+  const theme = useTheme();
+  const styles = useStyles(theme);
+
   return (
     <View style={[
       type === Direction.horizontal ? styles.horizontal : styles.vertical,
@@ -20,11 +23,11 @@ const Divider: React.FC<DividerProps> = ({type, style}) => {
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = (theme: Theme) => StyleSheet.create({
   horizontal: {
     width: '100%',
     height: 1,
-    borderTopColor: lightTheme.divider.color,
+    borderTopColor: theme.colors.border,
     borderTopWidth: 1,
     marginLeft: 6,
     marginRight: 6
@@ -32,7 +35,7 @@ const styles = StyleSheet.create({
   vertical: {
     height: '100%',
     width: 1,
-    borderLeftColor: lightTheme.divider.color,
+    borderLeftColor: theme.colors.border,
     borderLeftWidth: 1,
     marginLeft: 6,
     marginRight: 6

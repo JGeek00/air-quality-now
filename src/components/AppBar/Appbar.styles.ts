@@ -1,16 +1,16 @@
-import { lightTheme } from '../../config/theme';
+import { Theme } from '@react-navigation/native';
 import { StyleSheet } from "react-native";
 
-export default StyleSheet.create({
+export const useStyles = (theme: Theme) => StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: lightTheme.backgroundColor,
+    backgroundColor: theme.colors.background,
   },
   title: {
     fontSize: 22,
     fontFamily: 'OpenSans-SemiBold',
     fontWeight: '600',
-    color: 'black',
+    color: theme.colors.text,
     textAlign: 'center'
   }
 });

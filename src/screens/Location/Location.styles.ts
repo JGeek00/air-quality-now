@@ -1,11 +1,10 @@
+import { Theme } from '@react-navigation/native';
 import { StyleSheet } from "react-native";
 
-import { lightTheme } from './../../config/theme';
-
-export const locationScreen =  StyleSheet.create({
+export const useLocationScreen = (theme: Theme) => StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: lightTheme.backgroundColor
+    backgroundColor: theme.colors.background
   },
   body: {
     flex: 1
@@ -13,7 +12,7 @@ export const locationScreen =  StyleSheet.create({
   sectionTitle: {
     fontFamily: 'OpenSans-Bold',
     fontSize: 18,
-    color: 'black',
+    color: theme.colors.text,
     textAlign: 'center',
     padding: 16
   },
@@ -28,7 +27,7 @@ export const locationScreen =  StyleSheet.create({
   },
   infoLabel: {
     fontFamily: 'OpenSans-Medium',
-    color: 'black',
+    color: theme.colors.text,
     fontSize: 16
   },
   infoSublabel: {
@@ -44,7 +43,7 @@ export const locationScreen =  StyleSheet.create({
   },
   measurementLabel: {
     fontFamily: 'OpenSans-Medium',
-    color: 'black',
+    color: theme.colors.text,
     fontSize: 16
   },
   measurementValue: {
@@ -52,18 +51,18 @@ export const locationScreen =  StyleSheet.create({
   },
   measurementValueLabel: {
     textAlign: 'center',
-    color: 'black',
+    color: theme.colors.text,
     fontFamily: 'OpenSans-Medium'
   }
 });
 
-export const locationHeader = StyleSheet.create({
+export const useLocationHeader = (theme: Theme) => StyleSheet.create({
   header: {
     paddingTop: 16,
     flexDirection: 'row',
     alignItems: 'center',
     paddingBottom: 8,
-    backgroundColor: lightTheme.backgroundColor
+    backgroundColor: theme.colors.background
   },
   backButton: {
     marginLeft: 5
@@ -73,6 +72,6 @@ export const locationHeader = StyleSheet.create({
     fontFamily: 'OpenSans-Bold',
     marginLeft: 8,
     paddingBottom: 2,
-    color: 'black'
+    color: theme.colors.text,
   },
 });

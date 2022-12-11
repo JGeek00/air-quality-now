@@ -1,20 +1,23 @@
-import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
-import { FlatList, SafeAreaView, TextInput, View } from "react-native";
+import { FlatList, SafeAreaView, View } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import CustomText from "../../components/CustomText/CustomText";
-import IconButton from "../../components/IconButton/IconButton";
 import CityResult from "../../components/ResultItems/City/City";
+import { subtextDarkTheme, subtextLightTheme } from "../../config/theme";
 import { CitiesContext } from "../../context/CitiesContext";
 import { City } from "../../models/CityQuery";
-import { searchStyles as styles } from './Search.styles';
+import { useSearchStyles } from "./Search.styles";
 
 const SearchScreen = () => {
   const [citiesDisplay, setCitiesDisplay] = useState<Array<City>>([]);
 
   const { data: cities, searchValue, setSearchValue } = useContext(CitiesContext);
 
+  const theme = useTheme();
+  const styles = useSearchStyles(theme);
+ 
   const findCities = (value: string) => {
     setSearchValue(value);
     setCitiesDisplay(
@@ -45,7 +48,11 @@ const SearchScreen = () => {
           />
         ) : (
           <View style={styles.inputSearch}>
-            <Icon name="search" size={60} />
+            <Icon 
+              name="search" 
+              size={60} 
+              color={theme.dark ? subtextDarkTheme : subtextLightTheme}
+            />
             <CustomText style={styles.inputSearchText}>Input a city to search</CustomText>
           </View>
         )}
