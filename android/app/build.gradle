@@ -138,10 +138,10 @@ android {
 
     defaultConfig {
         applicationId "com.airqualitynow"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 26
+        targetSdkVersion 33
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {
