@@ -4,7 +4,7 @@ import { Pressable, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { tabs } from '../../config/screens';
-import { darkRipple, lightRipple, subtextDarkTheme, subtextLightTheme } from '../../config/theme';
+import { darkRipple, lightRipple, subtextDarkTheme } from '../../config/theme';
 import CustomText from '../CustomText/CustomText';
 import { useStyles } from './NavigationBar.styles';
 
@@ -23,17 +23,15 @@ const CustomNavigationBar: React.FC<BottomTabBarProps> = ({state, navigation}) =
             >
               <View style={styles.tabItem}>
                 <Icon 
-                  style={[
-                    styles.icon, 
-                    state.index === index ? {color: theme.colors.primary} : (theme.dark ? {color: subtextDarkTheme} : {color: subtextLightTheme})
-                  ]} 
+                  style={styles.icon} 
                   name={tabs[index].icon} 
                   size={26} 
+                  color={state.index === index ? theme.colors.primary : subtextDarkTheme}
                 />
                 <CustomText 
                   style={[
                     styles.tabText, 
-                    state.index === index ? {color: theme.colors.primary} :  {color: theme.dark ? subtextDarkTheme : subtextLightTheme} 
+                    {color: state.index === index ? theme.colors.primary : subtextDarkTheme}
                   ]}
                 >
                   {tabs[index].name}
