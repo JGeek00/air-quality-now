@@ -16,6 +16,24 @@ export const screenStyles = StyleSheet.create({
   },
   list: {
     flex: 1,
+  },
+  error: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  message: {
+    fontSize: 22,
+    fontFamily: 'OpenSans-Medium',
+    color: 'black',
+    textAlign: 'center',
+    padding: 30
+  },
+  loadingTile: {
+    padding: 8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

@@ -16,8 +16,8 @@ export const getAllCities = async () => {
   }
 }
 
-export const getCityLocations = async (city: string, page: number) => {
-  const limit: number = 100;
+export const getCityLocations = async (city: string, page: number, limit: number) => {
+
   try {
     const response = await axios.get(
       `${apiUrl}/locations?limit=${limit}&page=${page}&offset=${(limit*page)-limit}&sort=desc&city=${city}&order_by=lastUpdated&dumpRaw=false`
