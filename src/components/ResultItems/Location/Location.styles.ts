@@ -15,6 +15,11 @@ export const useStyles = (theme: Theme) => StyleSheet.create({
     fontFamily: 'OpenSans-Bold',
     color: theme.colors.text
   },
+  nameHome: {
+    fontSize: 16,
+    fontFamily: 'OpenSans-Medium',
+    color: theme.colors.text
+  },
   parameters: {
     flexDirection: 'row',
     marginTop: 8,

@@ -12,10 +12,9 @@ import { RootStackParamList } from "../../router/Home.Router";
 import CustomButton from "../../components/Button/CustomButton";
 import { lightTheme } from "../../config/theme";
 import { useTheme } from "@react-navigation/native";
+import { limitLocations } from "../../config/limitLocations";
 
 type Props = StackScreenProps<RootStackParamList, 'CityLocationsScreen'>;
-
-const limit: number = 100;
 
 const CityLocationsScreen = ({ route }: Props) => {
   const [locations, setLocations] = useState<Array<Location>>([]);
@@ -35,7 +34,7 @@ const CityLocationsScreen = ({ route }: Props) => {
       setFetchingMore(true);
     }
 
-    const result = await getCityLocations(route.params?.city, page, limit);
+    const result = await getCityLocations(route.params?.city, page, limitLocations);
     setLoading(false);
     setFetchingMore(false);
     if (result) {

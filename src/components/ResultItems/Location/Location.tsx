@@ -10,7 +10,8 @@ import { useStyles } from './Location.styles';
 import ParamItem from "./ParamItem";
 
 interface LocationItemProps {
-  locationItem: Location
+  locationItem: Location,
+  home?: boolean
 }
 
 export interface Parameters {
@@ -26,7 +27,7 @@ type RootStackParamList = {
   LocationScreen: {};
 };
 
-const LocationItem: React.FC<LocationItemProps> = ({ locationItem }) => {
+const LocationItem: React.FC<LocationItemProps> = ({ locationItem, home }) => {
   const [pressed, setPressed] = useState<boolean>(false);
 
   const theme = useTheme();
@@ -66,7 +67,7 @@ const LocationItem: React.FC<LocationItemProps> = ({ locationItem }) => {
           location: locationItem
         })}
       >
-        <Text style={styles.name}>{name}</Text>
+        <Text style={home ? styles.nameHome : styles.name}>{name}</Text>
         <View style={styles.latestUpdate}>
           <Text style={styles.latestUpdateLabel}>Latest update:</Text>
           <Text style={styles.latestUpdateValue}>{latestUpdateFormatted}</Text>

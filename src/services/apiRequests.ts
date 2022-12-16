@@ -17,10 +17,20 @@ export const getAllCities = async () => {
 }
 
 export const getCityLocations = async (city: string, page: number, limit: number) => {
-
   try {
     const response = await axios.get(
       `${apiUrl}/locations?limit=${limit}&page=${page}&offset=${(limit*page)-limit}&sort=desc&city=${city}&order_by=lastUpdated&dumpRaw=false`
+    );
+    return <LocationQuery>{...response.data};
+  } catch (error) {
+    return null;
+  }
+}
+
+export const getLocationsByCoordinates = async (x: number, y: number, page: number, limit: number) => {
+  try {
+    const response = await axios.get(
+      `${apiUrl}/locations?limit=${limit}&page=${page}&offset=${(limit*page)-limit}&sort=desc&coordinates=${x}%2C${y}&order_by=lastUpdated&dumpRaw=false&radius=10000`
     );
     return <LocationQuery>{...response.data};
   } catch (error) {

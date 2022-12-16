@@ -4,6 +4,7 @@ import { StatusBar, StatusBarStyle, useColorScheme } from 'react-native';
 import LoadingOverlay from './components/LoadingOverlay/LoadingOverlay';
 import CustomModal from './components/Modal/CustomModal';
 import CitiesContextProvider, { CitiesContext } from './context/CitiesContext';
+import GeolocationStatusContextProvider, { GeolocationStatusContext } from './context/GeolocationStatus';
 import LoadingLayerContextProvider from './context/LoadingLayerContext';
 import ModalContextProvider from './context/ModalContext';
 import ThemeContextProvider, { ThemeContext } from './context/ThemeContext';
@@ -15,12 +16,14 @@ const App = () => {
   return (
     <ThemeContextProvider>
       <CitiesContextProvider>
-      <LoadingLayerContextProvider>
-        <ModalContextProvider>
-          <Base />
-        </ModalContextProvider>
-      </LoadingLayerContextProvider>
-    </CitiesContextProvider>
+        <LoadingLayerContextProvider>
+          <ModalContextProvider>
+            <GeolocationStatusContextProvider>
+              <Base />
+            </GeolocationStatusContextProvider>
+          </ModalContextProvider>
+        </LoadingLayerContextProvider>
+      </CitiesContextProvider>
     </ThemeContextProvider>
   );
 }
@@ -36,8 +39,11 @@ const Base = () => {
   const scheme = useColorScheme();
   const { selectedTheme } = useContext(ThemeContext);
 
+  const { requestLocationPermission } = useContext(GeolocationStatusContext);
+
   useEffect(() => {
     fetchAllCities();
+    requestLocationPermission();
   }, []);
 
   const topBarTheme: StatusBarTheme = useMemo(() => {
