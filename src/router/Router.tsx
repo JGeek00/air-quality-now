@@ -1,5 +1,6 @@
 import { DefaultTheme, NavigationContainer, Theme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import RNBootSplash from 'react-native-bootsplash';
 
 import CustomNavigationBar from '../components/NavigationBar/NavigationBar';
 import { tabs } from '../config/screens';
@@ -39,7 +40,7 @@ const Router = () => {
   }, [selectedTheme, scheme])
 
   return (
-    <NavigationContainer theme={theme}>
+    <NavigationContainer theme={theme} onReady={() => RNBootSplash.hide()}>
       <BottomTabs.Navigator
         initialRouteName='Home'
         screenOptions={{
