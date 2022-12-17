@@ -40,7 +40,9 @@ const LocationScreen = ({ route }: Props) => {
   }
 
   useEffect(() => {
-    fetchAddress();
+    if (location.coordinates && location.coordinates.latitude && location.coordinates.longitude) {
+      fetchAddress();
+    }
   }, [location.coordinates]);
 
   return (
@@ -55,24 +57,48 @@ const LocationScreen = ({ route }: Props) => {
           <CustomText style={styles.infoLabel}>Name</CustomText>
           <CustomText>{location.name}</CustomText>
         </View>
-        <View style={styles.infoRow}>
-          <CustomText style={styles.infoLabel}>Address</CustomText>
-          {
-            loadingAddress ? (
-              <ActivityIndicator />
-            ) : (
-              errorAddress ? (
-                <Icon name="exclamation-circle" color="red" size={18} />
-              ) : (
-                <CustomText>{address}</CustomText>
-              )
-            )
-          }
-        </View>
-        <View style={styles.infoRow}>
-          <CustomText style={styles.infoLabel}>City and country</CustomText>
-          <CustomText>{`${location.city}, ${location.country}`}</CustomText>
-        </View>
+        {
+          location.coordinates && location.coordinates.latitude && location.coordinates.longitude ? (
+            <View style={styles.infoRow}>
+              <CustomText style={styles.infoLabel}>Address</CustomText>
+              {
+                loadingAddress ? (
+                  <ActivityIndicator />
+                ) : (
+                  errorAddress ? (
+                    <Icon name="exclamation-circle" color="red" size={18} />
+                  ) : (
+                    <CustomText>{address}</CustomText>
+                  )
+                )
+              }
+            </View>
+          ) : null
+        }
+        {
+          location.city && location.country ? (
+            <View style={styles.infoRow}>
+              <CustomText style={styles.infoLabel}>City and country</CustomText>
+              <CustomText>{`${location.city}, ${location.country}`}</CustomText>
+            </View>
+          ) : null
+        }
+        {
+          location.city && !location.country ? (
+            <View style={styles.infoRow}>
+              <CustomText style={styles.infoLabel}>City</CustomText>
+              <CustomText>{`${location.city}`}</CustomText>
+            </View>
+          ) : null
+        }
+        {
+          !location.city && location.country ? (
+            <View style={styles.infoRow}>
+              <CustomText style={styles.infoLabel}>Country</CustomText>
+              <CustomText>{`${location.country}`}</CustomText>
+            </View>
+          ) : null
+        }
         <View style={styles.infoRow}>
           <CustomText style={styles.infoLabel}>Entity</CustomText>
           <CustomText>{location.entity}</CustomText>
