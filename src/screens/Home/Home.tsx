@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, useWindowDimensions, View } from "react-native";
 import Animated from "react-native-reanimated";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import CustomButton from "../../components/Button/CustomButton";
@@ -30,6 +30,8 @@ const HomeScreen = () => {
   const { status, currentPosition } = useContext(GeolocationStatusContext);
 
   const scrolling = useRef(new Animated.Value(0)).current;
+
+  const { height } = useWindowDimensions();
 
   const fetchLocations = async (page: number | undefined = 1) => {
     if (page > 1) {
@@ -106,13 +108,13 @@ const HomeScreen = () => {
             }
           </View>
         ) : (
-          <View style={styles.noLocation}>
+          <View style={[styles.noLocation, height < 400 ? {flexDirection: 'row'} : null]}>
             <Icon name="location-off" size={70} />
             <CustomText style={styles.noLocationText}>Error when getting current location.</CustomText>
           </View>
         )
       ) : (
-        <View style={styles.noLocation}>
+        <View style={[styles.noLocation, height < 400 ? {flexDirection: 'row'} : null]}>
           <Icon name="location-off" size={70} />
           <CustomText style={styles.noLocationText}>Allow location access to see nearby stations.</CustomText>
         </View>

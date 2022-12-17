@@ -16,6 +16,11 @@ export const useSearchStyles = (theme: Theme) => StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  inputSearchHorizontal: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   inputSearchText: {
     fontFamily: 'OpenSans-Medium',
     fontSize: 26,

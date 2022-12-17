@@ -11,6 +11,9 @@ export const useStyles = (theme: Theme) => StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
+  mainInfo: {
+    flex: 1
+  },
   cityName: {
     fontSize: 18,
     color: theme.colors.text,
@@ -21,7 +24,7 @@ export const useStyles = (theme: Theme) => StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     marginTop: 8,
-    zIndex: 5
+    zIndex: 10
   },
   flagContainer: {
     justifyContent: 'center',
@@ -46,7 +49,8 @@ export const useStyles = (theme: Theme) => StyleSheet.create({
     backgroundColor: '#8ECAE6',
     color: 'black'
   },
-  arrowContainer: {
+  arrowContainer: { 
+    paddingLeft: 14,
     justifyContent: 'center',
     alignItems: 'center',
   }

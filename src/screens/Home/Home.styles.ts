@@ -30,7 +30,8 @@ export const useHomeStyles = (theme: Theme) => StyleSheet.create({
   noLocation: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1
+    flex: 1,
+    paddingTop: 120,
   },
   noLocationText: {
     fontFamily: 'OpenSans-Medium',
@@ -45,7 +46,7 @@ export const useHomeStyles = (theme: Theme) => StyleSheet.create({
   nearbyStationsTitle: {
     fontFamily: 'OpenSans-Bold',
     fontSize: 18,
-    color: 'black',
+    color: theme.colors.text,
     paddingLeft: 16,
     textAlign: 'center',
     paddingBottom: 8,

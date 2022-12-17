@@ -9,6 +9,10 @@ export const useStyles = (theme: Theme) => StyleSheet.create({
   },
   container: {
     padding: 16,
+    flexDirection: 'row'
+  },
+  infoContainer: {
+    flex: 1,
   },
   name: {
     fontSize: 18,
@@ -36,6 +40,11 @@ export const useStyles = (theme: Theme) => StyleSheet.create({
   },
   latestUpdateValue: {
     color: theme.dark ? subtextDarkTheme : subtextLightTheme
+  },
+  arrowContainer: { 
+    paddingLeft: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 

@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
-import { FlatList, SafeAreaView, View } from "react-native";
+import { FlatList, SafeAreaView, useWindowDimensions, View } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import CustomText from "../../components/CustomText/CustomText";
@@ -25,6 +25,8 @@ const SearchScreen = () => {
     );
   }
 
+  const { height } = useWindowDimensions();
+
   useEffect(() => {
     findCities(searchValue);
   }, [searchValue]);
@@ -47,13 +49,15 @@ const SearchScreen = () => {
             keyExtractor={(item) => item.id}
           />
         ) : (
-          <View style={styles.inputSearch}>
+          <View style={[styles.inputSearch, height < 400 ? styles.inputSearchHorizontal : null]}>
             <Icon 
               name="search" 
               size={60} 
               color={theme.dark ? subtextDarkTheme : subtextLightTheme}
             />
-            <CustomText style={styles.inputSearchText}>Input a city to search</CustomText>
+            <CustomText style={[styles.inputSearchText, height < 400 ? {marginTop: 0, marginLeft: 40} : null]}>
+              Input a city to search
+            </CustomText>
           </View>
         )}
       </View>

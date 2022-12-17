@@ -3,8 +3,9 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useMemo, useState } from "react";
 import { Platform, Pressable, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import Icon from "react-native-vector-icons/FontAwesome";
 
-import { darkRipple, lightRipple } from "../../../config/theme";
+import { darkRipple, lightRipple, subtextDarkTheme, subtextLightTheme } from "../../../config/theme";
 import { Location, ParameterElement } from "../../../models/LocationQuery";
 import { useStyles } from './Location.styles';
 import ParamItem from "./ParamItem";
@@ -67,19 +68,27 @@ const LocationItem: React.FC<LocationItemProps> = ({ locationItem, home }) => {
           location: locationItem
         })}
       >
-        <Text style={home ? styles.nameHome : styles.name}>{name}</Text>
-        <View style={styles.latestUpdate}>
-          <Text style={styles.latestUpdateLabel}>Latest update:</Text>
-          <Text style={styles.latestUpdateValue}>{latestUpdateFormatted}</Text>
+        <View style={styles.infoContainer}>
+          <Text style={home ? styles.nameHome : styles.name}>{name}</Text>
+          <View style={styles.latestUpdate}>
+            <Text style={styles.latestUpdateLabel}>Latest update:</Text>
+            <Text style={styles.latestUpdateValue}>{latestUpdateFormatted}</Text>
+          </View>
+          <ScrollView style={styles.parameters} horizontal={true} showsHorizontalScrollIndicator={false}>
+            {paramsObj.co ? <ParamItem paramId="co" paramLabel={paramsObj.co} params={paramsObj} /> : null}
+            {paramsObj.no2 ? <ParamItem paramId="no2" paramLabel={paramsObj.no2} params={paramsObj} /> : null}
+            {paramsObj.o3 ? <ParamItem paramId="o3" paramLabel={paramsObj.o3} params={paramsObj} /> : null}
+            {paramsObj.pm10 ? <ParamItem paramId="pm10" paramLabel={paramsObj.pm10} params={paramsObj} /> : null}
+            {paramsObj.pm25 ? <ParamItem paramId="pm25" paramLabel={paramsObj.pm25} params={paramsObj} /> : null}
+            {paramsObj.so2 ? <ParamItem paramId="so2" paramLabel={paramsObj.so2} params={paramsObj} /> : null}
+          </ScrollView>
         </View>
-        <ScrollView style={styles.parameters} horizontal={true} showsHorizontalScrollIndicator={false}>
-          {paramsObj.co ? <ParamItem paramId="co" paramLabel={paramsObj.co} params={paramsObj} /> : null}
-          {paramsObj.no2 ? <ParamItem paramId="no2" paramLabel={paramsObj.no2} params={paramsObj} /> : null}
-          {paramsObj.o3 ? <ParamItem paramId="o3" paramLabel={paramsObj.o3} params={paramsObj} /> : null}
-          {paramsObj.pm10 ? <ParamItem paramId="pm10" paramLabel={paramsObj.pm10} params={paramsObj} /> : null}
-          {paramsObj.pm25 ? <ParamItem paramId="pm25" paramLabel={paramsObj.pm25} params={paramsObj} /> : null}
-          {paramsObj.so2 ? <ParamItem paramId="so2" paramLabel={paramsObj.so2} params={paramsObj} /> : null}
-        </ScrollView>
+        <View style={styles.arrowContainer}>
+          <Icon 
+            name="chevron-right"
+            color={theme.dark ? subtextDarkTheme : subtextLightTheme}
+          />
+        </View>
       </Pressable>
     </View>
   );

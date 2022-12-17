@@ -51,7 +51,7 @@ const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, sta
           city: name
         })}
       >
-        <View>
+        <View style={styles.mainInfo}>
           <CustomText style={styles.cityName}>{name}</CustomText>
           <ScrollView style={styles.infoContainer} horizontal={true} showsHorizontalScrollIndicator={false} >
             <View style={styles.flagContainer}><CustomText>{flag}</CustomText></View>
