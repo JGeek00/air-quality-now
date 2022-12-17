@@ -67,7 +67,7 @@ const HomeScreen = () => {
             {
               loading ? (
                 <View style={styles.loading}>
-                  <ActivityIndicator size={60} />
+                  <ActivityIndicator size={60} color={theme.colors.primary} />
                 </View>
               ) : (
                 error ? (
@@ -88,7 +88,7 @@ const HomeScreen = () => {
                     ListFooterComponent={
                       fetchingMore ? (
                         <View style={styles.loadingTile}>
-                          <ActivityIndicator size={30} />
+                          <ActivityIndicator size={30} color={theme.colors.primary} />
                         </View>
                       ) : null
                     }

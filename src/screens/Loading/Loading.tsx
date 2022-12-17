@@ -10,26 +10,38 @@ const LoadingScreen = () => {
 
   const { selectedTheme } = useContext(ThemeContext);
 
-  const backgroundColor: string = useMemo(() => {
+  const colors = useMemo(() => {
     if (selectedTheme === 0) {
       if (scheme === 'light') {
-        return lightTheme.colors.background;
+        return {
+          background: lightTheme.colors.background,
+          primary: lightTheme.colors.primary
+        };
       }
       else {
-        return darkTheme.colors.background;
+        return {
+          background: darkTheme.colors.background,
+          primary: darkTheme.colors.primary
+        };
       }
     }
     else if (selectedTheme === 1) {
-      return lightTheme.colors.background;
+      return {
+        background: lightTheme.colors.background,
+        primary: lightTheme.colors.primary
+      };
     }
     else {
-      return lightTheme.colors.background;
+      return {
+        background: lightTheme.colors.background,
+        primary: lightTheme.colors.primary
+      };
     }
   }, [selectedTheme, scheme]);
 
   return (
-    <View style={[styles.root, { backgroundColor }]}>
-      <ActivityIndicator size={60} />
+    <View style={[styles.root, { backgroundColor: colors.background }]}>
+      <ActivityIndicator size={60} color={colors.primary} />
     </View>
   );
 }

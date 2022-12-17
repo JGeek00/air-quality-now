@@ -63,7 +63,7 @@ const LocationScreen = ({ route }: Props) => {
               <CustomText style={styles.infoLabel}>Address</CustomText>
               {
                 loadingAddress ? (
-                  <ActivityIndicator />
+                  <ActivityIndicator color={theme.colors.primary} />
                 ) : (
                   errorAddress ? (
                     <Icon name="exclamation-circle" color="red" size={18} />
