@@ -21,7 +21,7 @@ import { gitHubUrl, googlePlayUrl } from "../../config/urls";
 const SettingsScreen = () => {
   const [openNewPressed, setOpenNewPressed] = useState<boolean>(false);
 
-  const { selectedTheme, setSelectedTheme } = useContext(ThemeContext);
+  const { selectedTheme, updateSelectedTheme } = useContext(ThemeContext);
   
   const theme = useTheme();
   const styles = useSettingsStyles(theme);
@@ -37,19 +37,19 @@ const SettingsScreen = () => {
         label="System defined" 
         value={0}
         groupValue={selectedTheme}
-        onTap={(value: number) => setSelectedTheme(value)}
+        onTap={(value: number) => updateSelectedTheme(value)}
       />
       <RadioListItem
         label="Light" 
         value={1}
         groupValue={selectedTheme}
-        onTap={(value: number) => setSelectedTheme(value)}
+        onTap={(value: number) => updateSelectedTheme(value)}
       />
       <RadioListItem
         label="Dark" 
         value={2}
         groupValue={selectedTheme}
-        onTap={(value: number) => setSelectedTheme(value)}
+        onTap={(value: number) => updateSelectedTheme(value)}
       />
       <SectionLabel label="About" />
       <Pressable 
