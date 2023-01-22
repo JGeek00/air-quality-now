@@ -53,6 +53,13 @@ export const useLocationScreen = (theme: Theme) => StyleSheet.create({
     textAlign: 'center',
     color: theme.colors.text,
     fontFamily: 'OpenSans-Medium'
+  },
+  mapContainer: {
+    height: 200,
+    overflow: 'hidden',
+    borderRadius: 20,
+    margin: 16,
+    marginBottom: 0
   }
 });
 

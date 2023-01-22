@@ -65,3 +65,6 @@ buck-out/
 
 # Android builds
 /android/app/release
+
+# Env
+.env

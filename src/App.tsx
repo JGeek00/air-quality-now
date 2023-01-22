@@ -1,3 +1,4 @@
+import MapboxGL from '@rnmapbox/maps';
 import { useContext, useEffect, useMemo } from 'react';
 import { StatusBar, StatusBarStyle, useColorScheme } from 'react-native';
 
@@ -11,6 +12,8 @@ import ThemeContextProvider, { ThemeContext } from './context/ThemeContext';
 import Router from './router/Router';
 import LoadingError from './screens/Loading/Error';
 import LoadingScreen from './screens/Loading/Loading';
+
+MapboxGL.setAccessToken(process.env['REACT_APP_MAPBOX_API_TOKEN'] ?? '');
 
 const App = () => {
   return (

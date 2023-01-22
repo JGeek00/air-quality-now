@@ -1,7 +1,8 @@
 import { useTheme } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
+import MapboxGL, { Camera, MapView, PointAnnotation } from "@rnmapbox/maps";
 import { useEffect, useMemo, useState } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, Linking, Platform, Pressable, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
 import CustomText from "../../components/CustomText/CustomText";
@@ -45,6 +46,17 @@ const LocationScreen = ({ route }: Props) => {
     }
   }, [location.coordinates]);
 
+  const openMapLink = () => {
+    const scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:';
+    const url = Platform.select({
+      ios: `${scheme}${location.coordinates.latitude},${location.coordinates.longitude}`,
+      android: `${scheme}${location.coordinates.latitude},${location.coordinates.longitude}`
+    });
+    if (url) {
+      Linking.openURL(url);
+    }
+  }
+
   return (
     <View style={styles.screen}>
       <ScrollView style={styles.body}>
@@ -68,7 +80,7 @@ const LocationScreen = ({ route }: Props) => {
                   errorAddress ? (
                     <Icon name="exclamation-circle" color="red" size={18} />
                   ) : (
-                    <CustomText>{address}</CustomText>
+                    <CustomText>{address ?? 'N/A'}</CustomText>
                   )
                 )
               }
@@ -152,6 +164,30 @@ const LocationScreen = ({ route }: Props) => {
             </View>
           </View>
         ))}
+        {
+          location.coordinates.latitude && location.coordinates.longitude ? (
+            <Pressable 
+              style={styles.mapContainer}
+              onPress={openMapLink}
+            >
+              <MapView 
+                style={{flex: 1}} 
+                scaleBarEnabled={false}
+                attributionEnabled={false}
+                
+              >
+                <Camera
+                  zoomLevel={13}
+                  centerCoordinate={[location.coordinates.longitude, location.coordinates.latitude]}
+                  animationDuration={0}
+                />
+                <PointAnnotation 
+                  coordinate={[location.coordinates.longitude, location.coordinates.latitude]} 
+                />
+              </MapView>
+            </Pressable>
+          ) : null
+        }
         <View style={{height: 16}} />
       </ScrollView>
     </View>
