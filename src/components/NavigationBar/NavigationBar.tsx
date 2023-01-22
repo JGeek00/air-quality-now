@@ -1,5 +1,6 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useTheme } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -11,6 +12,15 @@ import { useStyles } from './NavigationBar.styles';
 const CustomNavigationBar: React.FC<BottomTabBarProps> = ({state, navigation}) => {
   const theme = useTheme();
   const styles = useStyles(theme);
+
+  const { t } = useTranslation();
+
+  const labels: {
+    [index: string]: string;
+  } = {
+    'home': t('navBar.home'),
+    'settings': t('navBar.settings')
+  };
 
   return (
     <View style={styles.container}>
@@ -34,7 +44,7 @@ const CustomNavigationBar: React.FC<BottomTabBarProps> = ({state, navigation}) =
                     {color: state.index === index ? theme.colors.primary : subtextDarkTheme}
                   ]}
                 >
-                  {tabs[index].name}
+                  {labels[tabs[index].id]}
                 </CustomText>
               </View>
             </Pressable>

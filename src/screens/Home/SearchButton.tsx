@@ -3,6 +3,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import React from "react";
 import { Pressable, Text, View } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useTranslation } from 'react-i18next';
 
 import { darkRipple, lightRipple, subtextDarkTheme, subtextLightTheme } from "../../config/theme";
 import { useSearchButtonStyles } from "./Home.styles";
@@ -12,11 +13,12 @@ type RootStackParamList = {
 };
 
 const SearchButton = () => {
-
   const theme = useTheme();
   const styles = useSearchButtonStyles(theme);
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  const { t } = useTranslation();
   
   return (
     <View style={styles.searchWrapper}>
@@ -31,7 +33,7 @@ const SearchButton = () => {
           style={styles.searchIcon} 
           color={theme.dark ? subtextDarkTheme : subtextLightTheme} 
         />
-        <Text style={styles.searchText}>Search a city</Text>
+        <Text style={styles.searchText}>{t('home.header.searchCity')}</Text>
       </Pressable>
     </View>
   );

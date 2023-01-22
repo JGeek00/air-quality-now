@@ -3,8 +3,9 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { ActivityIndicator, useWindowDimensions, View } from "react-native";
 import Animated from "react-native-reanimated";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import CustomButton from "../../components/Button/CustomButton";
+import { useTranslation } from 'react-i18next';
 
+import CustomButton from "../../components/Button/CustomButton";
 import CustomText from "../../components/CustomText/CustomText";
 import LocationItem from "../../components/ResultItems/Location/Location";
 import { limitLocations } from "../../config/limitLocations";
@@ -32,6 +33,8 @@ const HomeScreen = () => {
   const scrolling = useRef(new Animated.Value(0)).current;
 
   const { height } = useWindowDimensions();
+
+  const { t } = useTranslation();
 
   const fetchLocations = async (page: number | undefined = 1) => {
     if (page > 1) {
@@ -84,7 +87,7 @@ const HomeScreen = () => {
                     keyExtractor={(item) => item ? item?.id.toString() : 'loader'}
                     onEndReached={needsPagination ? () => fetchLocations(page+1) : null}
                     onEndReachedThreshold={0.5}
-                    ListHeaderComponent={<CustomText style={styles.nearbyStationsTitle}>Nearby stations</CustomText>}
+                    ListHeaderComponent={<CustomText style={styles.nearbyStationsTitle}>{t('home.body.nearbyStations')}</CustomText>}
                     ListFooterComponent={
                       fetchingMore ? (
                         <View style={styles.loadingTile}>
@@ -110,13 +113,13 @@ const HomeScreen = () => {
         ) : (
           <View style={[styles.noLocation, height < 400 ? {flexDirection: 'row'} : null]}>
             <Icon name="location-off" size={70} />
-            <CustomText style={styles.noLocationText}>Error when getting current location.</CustomText>
+            <CustomText style={styles.noLocationText}>{t('home.body.errorLocation')}</CustomText>
           </View>
         )
       ) : (
         <View style={[styles.noLocation, height < 400 ? {flexDirection: 'row'} : null]}>
           <Icon name="location-off" size={70} />
-          <CustomText style={styles.noLocationText}>Allow location access to see nearby stations.</CustomText>
+          <CustomText style={styles.noLocationText}>{t('home.body.allowLocationMessage')}</CustomText>
         </View>
       )}
       </View>

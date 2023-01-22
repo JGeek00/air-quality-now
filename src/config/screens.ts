@@ -1,16 +1,20 @@
 import HomeRouter from "../router/Home.Router";
 import SettingsRouter from "../router/Settings.Router";
 
-export const tabs = [
+interface Tab {
+  id: string,
+  icon: string,
+  component: Element
+}
+
+export const tabs: Tab[] = [
   {
     "id": "home",
-    "name": "Home",
     "icon": "home",
     "component": HomeRouter
   },
   {
     "id": "settings",
-    "name": "Settings",
     "icon": "gear",
     "component": SettingsRouter
   },

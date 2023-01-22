@@ -1,0 +1,16 @@
+{
+  "navBar": {
+    "home": "Inicio",
+    "settings": "Ajustes"
+  },
+  "home": {
+    "header": {
+      "searchCity": "Buscar una ciudad"
+    },
+    "body": {
+      "nearbyStations": "Estaciones cercanas",
+      "errorLocation": "Error al obtener la localización actual.",
+      "allowLocationMessage": "Permite el acceso a localización para ver las estaciones cercanas."
+    }
+  }
+}
