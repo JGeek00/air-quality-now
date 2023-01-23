@@ -59,7 +59,7 @@ const SearchScreen = () => {
               color={theme.dark ? subtextDarkTheme : subtextLightTheme}
             />
             <CustomText style={[styles.inputSearchText, height < 400 ? {marginTop: 0, marginLeft: 40} : null]}>
-              {t('search.body.inputCity')}
+              {t('search.body.inputCitySearch')}
             </CustomText>
           </View>
         )}
