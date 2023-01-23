@@ -1,6 +1,7 @@
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -27,6 +28,8 @@ const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, sta
   const styles = useStyles(theme);
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  const { t } = useTranslation();
 
   const date: string = useMemo(() => {
     const formattedDate = new Date(lastUpdated);
@@ -56,9 +59,9 @@ const CityResult: React.FC<CityResultProps> = ({ name, country, lastUpdated, sta
           <ScrollView style={styles.infoContainer} horizontal={true} showsHorizontalScrollIndicator={false} >
             <View style={styles.flagContainer}><CustomText>{flag}</CustomText></View>
             <Divider type={Direction.vertical} style={styles.verticalDivider} />
-            <CustomText style={[styles.pillText, styles.lastUpdated]}>{`Last updated: ${date}`}</CustomText>
+            <CustomText style={[styles.pillText, styles.lastUpdated]}>{`${t('search.body.lastUpdated')}: ${date}`}</CustomText>
             <Divider type={Direction.vertical} />
-            <CustomText style={[styles.pillText, styles.stations]}>{`Stations: ${stations}`}</CustomText>
+            <CustomText style={[styles.pillText, styles.stations]}>{`${t('search.body.stations')}: ${stations}`}</CustomText>
           </ScrollView>
         </View>
         <View style={styles.arrowContainer}>

@@ -1,7 +1,8 @@
 import { useTheme } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
-import MapboxGL, { Camera, MapView, PointAnnotation } from "@rnmapbox/maps";
+import { Camera, MapView, PointAnnotation } from "@rnmapbox/maps";
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Linking, Platform, Pressable, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -21,6 +22,8 @@ const LocationScreen = ({ route }: Props) => {
 
   const theme = useTheme();
   const styles = useLocationScreen(theme);
+
+  const { t } = useTranslation();
 
   const location = route.params?.location;
 
@@ -57,22 +60,30 @@ const LocationScreen = ({ route }: Props) => {
     }
   }
 
+  const entities: {
+    [index: string]: string;
+  } = {
+    'government': t('location.entities.government'),
+    'community': t('location.entities.community'),
+    'research': t('location.entities.research')
+  }
+
   return (
     <View style={styles.screen}>
       <ScrollView style={styles.body}>
-        <CustomText style={styles.sectionTitle}>Information</CustomText>
+        <CustomText style={styles.sectionTitle}>{t('location.information')}</CustomText>
         <View style={styles.infoRow}>
-          <CustomText style={styles.infoLabel}>Location ID</CustomText>
+          <CustomText style={styles.infoLabel}>{t('location.locationId')}</CustomText>
           <CustomText>{location.id.toString()}</CustomText>
         </View>
         <View style={styles.infoRow}>
-          <CustomText style={styles.infoLabel}>Name</CustomText>
+          <CustomText style={styles.infoLabel}>{t('location.name')}</CustomText>
           <CustomText>{location.name}</CustomText>
         </View>
         {
           location.coordinates && location.coordinates.latitude && location.coordinates.longitude ? (
             <View style={styles.infoRow}>
-              <CustomText style={styles.infoLabel}>Address</CustomText>
+              <CustomText style={styles.infoLabel}>{t('location.address')}</CustomText>
               {
                 loadingAddress ? (
                   <ActivityIndicator color={theme.colors.primary} />
@@ -90,7 +101,7 @@ const LocationScreen = ({ route }: Props) => {
         {
           location.city && location.country ? (
             <View style={styles.infoRow}>
-              <CustomText style={styles.infoLabel}>City and country</CustomText>
+              <CustomText style={styles.infoLabel}>{t('location.cityCountry')}</CustomText>
               <CustomText>{`${location.city}, ${location.country}`}</CustomText>
             </View>
           ) : null
@@ -98,7 +109,7 @@ const LocationScreen = ({ route }: Props) => {
         {
           location.city && !location.country ? (
             <View style={styles.infoRow}>
-              <CustomText style={styles.infoLabel}>City</CustomText>
+              <CustomText style={styles.infoLabel}>{t('location.city')}</CustomText>
               <CustomText>{`${location.city}`}</CustomText>
             </View>
           ) : null
@@ -106,19 +117,19 @@ const LocationScreen = ({ route }: Props) => {
         {
           !location.city && location.country ? (
             <View style={styles.infoRow}>
-              <CustomText style={styles.infoLabel}>Country</CustomText>
+              <CustomText style={styles.infoLabel}>{t('location.country')}</CustomText>
               <CustomText>{`${location.country}`}</CustomText>
             </View>
           ) : null
         }
         <View style={styles.infoRow}>
-          <CustomText style={styles.infoLabel}>Entity</CustomText>
-          <CustomText>{location.entity}</CustomText>
+          <CustomText style={styles.infoLabel}>{t('location.entity')}</CustomText>
+          <CustomText>{entities[location.entity]}</CustomText>
         </View>
         <View style={styles.infoRow}>
           <View>
-            <CustomText style={styles.infoLabel}>Is mobile</CustomText>
-            <CustomText style={styles.infoSublabel}>The location is not fixed.</CustomText>
+            <CustomText style={styles.infoLabel}>{t('location.isMobile')}</CustomText>
+            <CustomText style={styles.infoSublabel}>{t('location.isMobileDescription')}</CustomText>
           </View>
           <Icon 
             name={location.isMobile ? "check" : "close"} 
@@ -128,8 +139,8 @@ const LocationScreen = ({ route }: Props) => {
         </View>
         <View style={styles.infoRow}>
           <View style={styles.infoLabelBox}>
-            <CustomText style={styles.infoLabel}>Is analysis</CustomText>
-            <CustomText style={styles.infoSublabel}>Data is the product of a previous analysis/aggregation and not raw measurements. </CustomText>
+            <CustomText style={styles.infoLabel}>{t('location.isAnalysis')}</CustomText>
+            <CustomText style={styles.infoSublabel}>{t('location.isAnalysisDescription')}</CustomText>
           </View>
           <Icon 
             name={location.isAnalysis ? "check" : "close"} 
@@ -138,17 +149,17 @@ const LocationScreen = ({ route }: Props) => {
           />
         </View>
         <View style={styles.infoRow}>
-          <CustomText style={styles.infoLabel}>Latest data</CustomText>
+          <CustomText style={styles.infoLabel}>{t('location.latestData')}</CustomText>
           <CustomText>{latestUpdate}</CustomText>
         </View>
-        <CustomText style={[styles.sectionTitle, {marginTop: 8}]}>Measurements</CustomText>
+        <CustomText style={[styles.sectionTitle, {marginTop: 8}]}>{t('location.measurements')}</CustomText>
         <View style={styles.measurementRow}>
           <View style={styles.measurementBox} />
           <View style={styles.measurementBox}>
-            <CustomText style={styles.measurementValueLabel}>Latest value</CustomText>
+            <CustomText style={styles.measurementValueLabel}>{t('location.latestValue')}</CustomText>
           </View>
           <View style={styles.measurementBox}>
-            <CustomText style={styles.measurementValueLabel}>Average</CustomText>
+            <CustomText style={styles.measurementValueLabel}>{t('location.average')}</CustomText>
           </View>
         </View>
         {location.parameters.map(item => (

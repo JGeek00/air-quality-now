@@ -1,5 +1,6 @@
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -18,6 +19,8 @@ const SearchHeader = () => {
 
   const theme = useTheme();
   const styles = useHeaderStyles(theme);
+
+  const { t } = useTranslation();
 
   return (
     <View style={styles.searchBox}>
@@ -45,7 +48,7 @@ const SearchHeader = () => {
             style={styles.searchField}
             onFocus={() => setSearchFocused(true)}  
             onBlur={() => setSearchFocused(false)}  
-            placeholder="Search a city."
+            placeholder={t('search.header.searchCity')}
             keyboardType="web-search"
             returnKeyType="search"
             placeholderTextColor={theme.dark ? subtextDarkTheme : subtextLightTheme}

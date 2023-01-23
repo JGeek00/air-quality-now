@@ -12,5 +12,54 @@
       "errorLocation": "Error when getting current location",
       "allowLocationMessage": "Allow location access to see nearby stations."
     }
+  },
+  "search": {
+    "header": {
+      "searchCity": "Search a city"
+    },
+    "body": {
+      "inputCitySearch": "Input a city to search",
+      "stations": "Stations",
+      "lastUpdated": "Last update"
+    }
+  },
+  "location": {
+    "latestUpdate": "Latest update",
+    "information": "Information",
+    "locationId": "Location ID",
+    "name": "Name",
+    "address": "Address",
+    "cityCountry": "City and country",
+    "country": "Country",
+    "city": "City",
+    "entity": "Entity",
+    "isMobile": "Is mobile",
+    "isMobileDescription": "The location is not fixed.",
+    "isAnalysis": "Is analysis",
+    "isAnalysisDescription": "Data is the product of a previous analysis/aggregation and not raw measurements.",
+    "latestData": "Latest data",
+    "measurements": "Measurements",
+    "latestValue": "Latest value",
+    "average": "Average",
+    "entities": {
+      "government": "Government",
+      "community": "Community",
+      "research": "Research"
+    }
+  },
+  "settings": {
+    "header": {
+      "settings": "Settings"
+    },
+    "body": {
+      "theme": "Theme",
+      "systemDefined": "System defined",
+      "light": "Light",
+      "dark": "Dark",
+      "about": "About",
+      "dataSource": "Data source",
+      "appVersion": "App version",
+      "createdBy": "Created by"
+    }
   }
 }

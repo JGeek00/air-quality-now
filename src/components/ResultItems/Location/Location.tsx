@@ -1,12 +1,13 @@
 import { useNavigation, useTheme } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Platform, Pressable, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { darkRipple, lightRipple, subtextDarkTheme, subtextLightTheme } from "../../../config/theme";
-import { Location, ParameterElement } from "../../../models/LocationQuery";
+import { Location } from "../../../models/LocationQuery";
 import { useStyles } from './Location.styles';
 import ParamItem from "./ParamItem";
 
@@ -37,6 +38,8 @@ const LocationItem: React.FC<LocationItemProps> = ({ locationItem, home }) => {
   const { parameters, lastUpdated, name } = locationItem;
 
   const { navigate } = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  const { t } = useTranslation();
  
   const paramsObj: Parameters = useMemo(() => {
     let obj = {};
@@ -71,7 +74,7 @@ const LocationItem: React.FC<LocationItemProps> = ({ locationItem, home }) => {
         <View style={styles.infoContainer}>
           <Text style={home ? styles.nameHome : styles.name}>{name}</Text>
           <View style={styles.latestUpdate}>
-            <Text style={styles.latestUpdateLabel}>Latest update:</Text>
+            <Text style={styles.latestUpdateLabel}>{t('location.latestUpdate')}:</Text>
             <Text style={styles.latestUpdateValue}>{latestUpdateFormatted}</Text>
           </View>
           <ScrollView style={styles.parameters} horizontal={true} showsHorizontalScrollIndicator={false}>

@@ -24,7 +24,8 @@ export const useSearchStyles = (theme: Theme) => StyleSheet.create({
   inputSearchText: {
     fontFamily: 'OpenSans-Medium',
     fontSize: 26,
-    marginTop: 40
+    marginTop: 40,
+    textAlign: 'center'
   }
 });
 

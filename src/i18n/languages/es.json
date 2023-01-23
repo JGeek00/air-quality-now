@@ -12,5 +12,54 @@
       "errorLocation": "Error al obtener la localización actual.",
       "allowLocationMessage": "Permite el acceso a localización para ver las estaciones cercanas."
     }
+  },
+  "search": {
+    "header": {
+      "searchCity": "Buscar una ciudad"
+    },
+    "body": {
+      "inputCity": "Introduce una ciudad para buscar",
+      "stations": "Estaciones",
+      "lastUpdated": "Última actualización"
+    }
+  },
+  "location": {
+    "latestUpdate": "Última actualización",
+    "information": "Información",
+    "locationId": "ID de localización",
+    "name": "Nombre",
+    "address": "Dirección",
+    "cityCountry": "Ciudad y país",
+    "country": "País",
+    "city": "Ciudad",
+    "entity": "Entidad",
+    "isMobile": "Es móvil",
+    "isMobileDescription": "La localización no es fija.",
+    "isAnalysis": "Es resultado de análisis",
+    "isAnalysisDescription": "Los datos son el resultado de un análisis previo y no de mediciones en bruto.",
+    "latestData": "Últimos valores",
+    "measurements": "Mediciones",
+    "latestValue": "Último valor",
+    "average": "Media",
+    "entities": {
+      "government": "Gobierno",
+      "community": "Comunidad",
+      "research": "Investigación"
+    }
+  },
+  "settings": {
+    "header": {
+      "settings": "Ajustes"
+    },
+    "body": {
+      "theme": "Tema",
+      "systemDefined": "Definido por el sistema",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "about": "Acerca de",
+      "dataSource": "Fuente de datos",
+      "appVersion": "Versión de la app",
+      "createdBy": "Creado por"
+    }
   }
 }

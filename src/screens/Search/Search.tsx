@@ -1,5 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FlatList, SafeAreaView, useWindowDimensions, View } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -31,6 +32,8 @@ const SearchScreen = () => {
     findCities(searchValue);
   }, [searchValue]);
 
+  const { t } = useTranslation();
+
   return (
     <SafeAreaView>
       <View style={styles.mainContainer}>
@@ -56,7 +59,7 @@ const SearchScreen = () => {
               color={theme.dark ? subtextDarkTheme : subtextLightTheme}
             />
             <CustomText style={[styles.inputSearchText, height < 400 ? {marginTop: 0, marginLeft: 40} : null]}>
-              Input a city to search
+              {t('search.body.inputCity')}
             </CustomText>
           </View>
         )}
