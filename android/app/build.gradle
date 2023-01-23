@@ -145,8 +145,8 @@ android {
         minSdkVersion 26
         targetSdkVersion 33
         compileSdkVersion 33
-        versionCode 4
-        versionName "0.3.0"
+        versionCode 5
+        versionName "1.0.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {
